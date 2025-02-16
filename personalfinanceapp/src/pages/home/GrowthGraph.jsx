@@ -16,7 +16,7 @@ function GrowthChart(props){
                   ]}
                   series={[
                     {
-                      data: [2, 5, 3],
+                      data: [2, 100, 3],
                     },
                   ]}
                   width={500}

@@ -1,0 +1,37 @@
+.grid-container{
+    display: grid;
+    grid-template-columns: repeat(4, 2fr);
+    grid-template-rows: repeat(4, 110px);
+    gap: 10px;
+    padding: 20px;
+    background-color: white;
+    margin-top: 30px;
+}
+
+.grid-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: lightblue;
+    font-size: 20px;
+    font-weight: bold;
+    border: 0px solid black;
+}
+
+.growth-graph{
+    grid-column: span 2;
+    grid-row: span 2;
+    background-color: white;
+}
+
+.transaction-history{
+    grid-column: span 2;
+    grid-row: span 3;
+    background-color: purple;
+}
+
+.category-totals{
+    grid-column: span 2;
+    background-color: orange;
+}
