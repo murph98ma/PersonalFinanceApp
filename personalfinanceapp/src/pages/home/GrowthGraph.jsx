@@ -1,12 +1,13 @@
 import React from "react";
 import {BarChart} from "@mui/x-charts"
+import "./GrowthGraph.css"
 
 
 function GrowthChart(props){
 
     return (
-        <div>
-            <BarChart 
+        <div className="bar-chart-container">
+            <BarChart className="bar-chart-container"
                 xAxis={[
                     {
                       id: 'barCategories',

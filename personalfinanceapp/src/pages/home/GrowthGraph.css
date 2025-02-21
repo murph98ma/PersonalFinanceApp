@@ -1,0 +1,12 @@
+/* Style for the container of the BarChart */
+.bar-chart-container {
+    width: 100%;  /* Makes the container take up full available width */
+    height: 100%;  /* Makes the container take up full available height */
+    position: relative; /* Ensures chart scales properly */
+}
+
+/* Optional: For better responsiveness on smaller screens */
+.bar-chart-container svg {
+    width: 100% !important;  /* Ensure SVG scales to 100% of the container */
+    height: 100% !important;  /* Ensure SVG scales to 100% of the container */
+}
