@@ -7,7 +7,8 @@ function GrowthChart(props){
 
     return (
         <div className="bar-chart-container">
-            <BarChart className="bar-chart-container"
+    
+          <BarChart 
                 xAxis={[
                     {
                       id: 'barCategories',
@@ -20,8 +21,7 @@ function GrowthChart(props){
                       data: [2, 100, 3],
                     },
                   ]}
-                  width={500}
-                  height={300}
+            
             />
         </div>
     )

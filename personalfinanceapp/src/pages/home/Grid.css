@@ -34,8 +34,11 @@
 
 /* Transaction history item that spans 2 columns and 3 rows */
 .transaction-history {
+    display: flex;
+    flex-direction: column;
     grid-column: span 2;
     grid-row: span 3;
+    justify-content: top;
     background-color: purple;
 }
 

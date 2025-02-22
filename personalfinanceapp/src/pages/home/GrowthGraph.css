@@ -1,8 +1,12 @@
 /* Style for the container of the BarChart */
 .bar-chart-container {
-    width: 100%;  /* Makes the container take up full available width */
-    height: 100%;  /* Makes the container take up full available height */
-    position: relative; /* Ensures chart scales properly */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 80%;
+   
 }
 
 /* Optional: For better responsiveness on smaller screens */
