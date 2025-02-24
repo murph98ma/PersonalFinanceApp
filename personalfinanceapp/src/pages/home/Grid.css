@@ -10,6 +10,7 @@
     height: 100vh; /* Ensure the grid takes up full height of the viewport */
     width: 100%; /* Ensure the grid takes up full width of the viewport */
     box-sizing: border-box; /* Ensures padding is included in the total width/height */
+    padding-top: 50px;
 }
 
 /* Grid items that will adjust dynamically */
@@ -18,19 +19,34 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: lightblue;
+    background-color: lightgray;
     font-size: 20px;
     font-weight: bold;
     border: 0px solid black;
-    height: 100%; /* Ensure the grid items expand to fill their respective rows */
+    height: 100%;
+    border-radius: 10px; /* Ensure the grid items expand to fill their respective rows */
+}
+
+.grid-date-selection-component{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    max-width: 50%;
+    max-height: 70%;
+}
+
+.submit-button{
+   padding-top: 20px;
+
 }
 
 /* Growth graph item that spans 2 columns and 2 rows */
 .growth-graph {
     grid-column: span 2;
     grid-row: span 2;
-    background-color: yellow;
+    background-color: lightgray;
 }
+
 
 /* Transaction history item that spans 2 columns and 3 rows */
 .transaction-history {
@@ -39,13 +55,14 @@
     grid-column: span 2;
     grid-row: span 3;
     justify-content: top;
-    background-color: purple;
+    background-color: lightgray;
+    border-radius: 10px;
 }
 
 /* Category totals item that spans 2 columns */
 .category-totals {
     grid-column: span 2;
-    background-color: orange;
+  
 }
 
 /* Optional: Responsive adjustments for smaller screens */

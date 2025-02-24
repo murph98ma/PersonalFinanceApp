@@ -1,0 +1,11 @@
+.category-total-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scroll-container{
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 100%;
+}

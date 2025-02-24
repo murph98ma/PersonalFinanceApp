@@ -1,0 +1,17 @@
+.date-picker-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Ensure it doesn't exceed the grid item */
+    background-color: blue;
+    justify-content: left;
+  }
+  
+  .date-picker-container .MuiCard-root {
+    width: 100%; /* Make the card fit the grid item */
+    max-width: 100%;
+  }
+  
+  .date-picker-container .MuiTextField-root {
+    width: 100%; /* Make sure the input field also fits */
+  }
+  
