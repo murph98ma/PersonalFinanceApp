@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     width: 100%; /* Ensure it doesn't exceed the grid item */
-    background-color: blue;
     justify-content: left;
   }
   

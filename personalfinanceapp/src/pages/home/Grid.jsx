@@ -10,26 +10,29 @@ const Grid = () => {
 
     //Test date for table.
     const columns = [
-        { key: "Date", label: "Date" },
-        { key: "name", label: "Name" },
-        { key: "email", label: "Email" },
-        { key: "age", label: "Age" },
-        {key: "test", label: "Test"}
-      ];
-      
-      const data = [
-        { Date: "2-22-25", name: "Alice Johnson", email: "alice@example.com", age: 28 },
-        { id: 2, name: "Bob Smith", email: "bob@example.com", age: 35 },
-        { id: 3, name: "Charlie Brown", email: "charlie@example.com", age: 40 },
-        { id: 4, name: "Dana White", email: "dana@example.com", age: 22 }
-      ];
+        { key: "date", label: "Date" },
+        { key: "description", label: "Description" },
+        { key: "category", label: "Category" },
+        { key: "amount", label: "Amount" },
+        { key: "paymentMethod", label: "Payment Method" }
+    ];
+    
+    const data = [
+        { date: "02-22-2025", description: "Grocery Shopping", category: "Food", amount: "$75.30", paymentMethod: "Credit Card" },
+        { date: "02-20-2025", description: "Rent Payment", category: "Housing", amount: "$1,200.00", paymentMethod: "Bank Transfer" },
+        { date: "02-18-2025", description: "Gas Station", category: "Transport", amount: "$45.67", paymentMethod: "Debit Card" },
+        { date: "02-15-2025", description: "Movie Night", category: "Entertainment", amount: "$30.00", paymentMethod: "Cash" },
+        { date: "02-10-2025", description: "Electricity Bill", category: "Utilities", amount: "$120.50", paymentMethod: "Online Payment" },
+        { date: "02-08-2025", description: "Gym Membership", category: "Health", amount: "$50.00", paymentMethod: "Credit Card" }
+    ];
+    
 
     return(
         <div className="grid-container">
             <div className="grid-item">
-                <div>Total Across All Accounts</div>
-                <div>Account 1</div>
-                <div>Account 2</div>
+                <div>Total: $30,000.00</div>
+                <div>NCACU: $20,000.00</div>
+                <div>Ally: $10,000.00</div>
             </div>
             <div className="grid-item">
             <div>Current Count: Name of Account</div>
@@ -37,6 +40,7 @@ const Grid = () => {
                 <div>Actual - pending</div>
             </div>
             <div className="grid-item category-totals">
+                <p>Category Totals</p>
                 <CategoryTotalList />
             </div>
             <div className="transaction-history">
@@ -53,7 +57,10 @@ const Grid = () => {
                 <div className="submit-button"><Button variant="contained">submit</Button></div>
             </div>
             <div className="grid-item">
-                <div>Remove Pending Button</div>
+                <div>
+                    <p>Debts</p>
+                    <CategoryTotalList />
+                </div>
             </div>
         </div>
     )

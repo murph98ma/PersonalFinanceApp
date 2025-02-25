@@ -12,9 +12,6 @@ const DatePicker = () => {
   return (
     <Card className="date-picker-container max-w-sm mx-auto p-4">
       <CardContent>
-        <Typography variant="subtitle1" gutterBottom>
-          Select a Date:
-        </Typography>
         <TextField
           type="date"
           id="date"
@@ -30,3 +27,6 @@ const DatePicker = () => {
 };
 
 export default DatePicker;
+
+
+
