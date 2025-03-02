@@ -11,4 +11,5 @@
     width: 100%;
     scroll-behavior: smooth;
     align-items: center;
+    scroll-padding-left: 10px;
 }

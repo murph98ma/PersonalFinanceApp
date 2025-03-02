@@ -19,6 +19,7 @@ function CategoryTotalList() {
         const checkScrollable = () => {
             if (scrollRef.current) {
                 const hasOverflow = scrollRef.current.scrollWidth > scrollRef.current.clientWidth;
+                setIsScrollable(hasOverflow);
             }
         };
 

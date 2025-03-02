@@ -2,7 +2,7 @@
 .grid-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* Distributes columns evenly across available space */
-    grid-template-rows: repeat(4, 1fr); /* Dynamically adjust row heights */
+    grid-template-rows: repeat(auto-fit, 4, 1fr); /* Dynamically adjust row heights */
     gap: 10px;
     padding: 10px; /* Adjust padding to create spacing around grid items */
     background-color: white;
@@ -45,6 +45,7 @@
     grid-column: span 2;
     grid-row: span 2;
     background-color: lightgray;
+    min-height: 250px;
 }
 
 

@@ -58,8 +58,8 @@ const Grid = () => {
             </div>
             <div className="grid-item">
                 <div>
-                    <p>Debts</p>
-                    <CategoryTotalList />
+                    {/* <p>Debts</p>
+                    <CategoryTotalList /> */}
                 </div>
             </div>
         </div>
