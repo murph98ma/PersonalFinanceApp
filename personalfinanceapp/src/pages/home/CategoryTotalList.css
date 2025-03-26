@@ -1,0 +1,15 @@
+.category-total-list{
+    display: flex;
+    align-items: center;
+    min-width: max-content;
+}
+
+.scroll-container{
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 100%;
+    scroll-behavior: smooth;
+    align-items: center;
+    scroll-padding-left: 10px;
+}
