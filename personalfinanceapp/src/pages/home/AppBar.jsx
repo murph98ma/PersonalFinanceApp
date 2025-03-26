@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./AppBar.css"; // Import the CSS file
 
 const AppBar = () => {
@@ -12,10 +13,9 @@ const AppBar = () => {
 
         {/* Navigation Links */}
         <nav className={`nav-links ${isOpen ? "open" : ""}`}>
-          <a href="#home">Home</a>
-          <a href="#features">Features</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#contact">Contact</a>
+            <Link to="/">Home</Link> 
+            <Link to="/transactions">Transactions</Link>
+            <Link to="/settings">Settings</Link>
         </nav>
 
         {/* Mobile Menu Button */}
