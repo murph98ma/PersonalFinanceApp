@@ -1,12 +1,12 @@
 import React from "react";
 import GrowthGraph from "./GrowthGraph";
-import "./Grid.css";
+import "./Dashboard.css";
 import DataTable from "./TransactionTable";
 import DatePicker from "./DateSelection";
 import { Button } from "@mui/material";
 import CategoryTotalList from "./CategoryTotalList";
 
-const Grid = () => {
+const Dashboard = () => {
 
     //Test date for table.
     const columns = [
@@ -66,4 +66,4 @@ const Grid = () => {
     )
 }
 
-export default Grid;
+export default Dashboard;

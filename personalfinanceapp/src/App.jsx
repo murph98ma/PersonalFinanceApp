@@ -3,19 +3,25 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import AppBar from './pages/home/AppBar'
-import Grid from './pages/home/Grid'
+import Dashboard from './pages/home/Dashboard'
+import Transactions from './pages/transactions/transactions'
+import Settings from './pages/settings/settings'
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+
 
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-   
-      <div>
-        <AppBar />
-        <Grid />
-      </div>
-    
+  <Router>
+    <AppBar />
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/transactions" element={<Transactions />} />
+        <Route path="/settings" element={<Settings />} />
+        </Routes>
+   </Router>
   )
 }
 
