@@ -1,9 +1,12 @@
 import React from "react";
 import {BarChart} from "@mui/x-charts"
+import axios from "axios";
 import "./GrowthGraph.css"
 
 
 function GrowthChart(props){
+
+  const[chartData, setChartData] = useState({months: [], values: []});
 
     return (
         <div className="bar-chart-container">
