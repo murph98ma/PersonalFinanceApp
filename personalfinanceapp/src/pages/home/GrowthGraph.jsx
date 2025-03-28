@@ -24,7 +24,7 @@ function GrowthChart(props){
 
 
   if (!chartData.months || !chartData.values || chartData.months.length === 0 || chartData.values.length === 0) {
-    return <div>Loading...</div>; // or return null if you prefer no placeholder
+    return <div>Loading Growth Graph...</div>; // or return null if you prefer no placeholder
   }
 
     return (

@@ -1,8 +1,10 @@
 {
-  "dependencies": {
-    "express": "^4.21.2",
-    "next": "^15.1.6",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+  "name": "personalfinanceapp",
+  "private": true,
+  "scripts": {
+    "start": "concurrently \"npm run dev --prefix personalfinanceapp\" \"npm run start --prefix personal_finance_server\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
   }
 }
