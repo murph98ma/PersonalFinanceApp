@@ -13,19 +13,20 @@
   }
   
   .table-header {
-    background-color: #f4f4f4;
+    background-color: #1170cf;
     text-align: left;
     padding: 10px;
     border: 1px solid #ccc;
+    color: white;
   }
   
   .table-row:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: lightgray;
   }
   
   .table-cell {
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #b6b6b6;
   }
   
   .table-row:hover {

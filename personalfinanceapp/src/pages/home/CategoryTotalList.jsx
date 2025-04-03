@@ -1,17 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import CategoryTotal from "./CategoryTotal";
+import axios from "axios";
 import "./CategoryTotalList.css";
 
-const cardDataArray = [
-    { title: "Car", content: "$3600.00" },
-    { title: "Student", content: "$20,000.00" },
-    { title: "Rent", content: "$1358.00" },
-    { title: "Groceries", content: "$500.00" },
-    { title: "Utilities", content: "$250.00" },
-    { title: "Entertainment", content: "$150.00" },
-];
-
 function CategoryTotalList() {
+
+    const [categoryData, setCategoryData] = useState({title: [], content: []});
     const [isScrollable, setIsScrollable] = useState(false);
     const scrollRef = useRef(null);
 
@@ -26,7 +20,31 @@ function CategoryTotalList() {
         checkScrollable();
         window.addEventListener("resize", checkScrollable);
         return () => window.removeEventListener("resize", checkScrollable);
-    }, [cardDataArray.length]); // Update when content changes
+    }, []);
+
+    useEffect(() => {
+        axios.get("http://localhost:5000/categoryTotal")
+        .then((response) =>{
+            console.log(response.data);
+
+            if(response.data.categories){
+                setCategoryData({
+                    title: response.data.categories.map(cat => cat.title),
+                    content: response.data.categories.map(cat => cat.content),
+                });
+            }else{
+                console.error("Unexpected format", response.data);
+            }
+           
+        })
+        .catch((error) => {
+            console.log("Error fetching category data: ", error);
+        })
+    }, []);
+
+    if(!categoryData.title || !categoryData.content || categoryData.title.length === 0 || categoryData.content.length === 0){
+        return <div>Loading Category Totals...</div>
+    }
 
     return (
         <div 
@@ -35,8 +53,8 @@ function CategoryTotalList() {
             style={{ justifyContent: isScrollable ? "flex-start" : "center" }}
         >
             <div className="category-total-list">
-                {cardDataArray.map((card, index) => (
-                    <CategoryTotal key={index} title={card.title} content={card.content} />
+                {categoryData.title.map((title, index) => (
+                    <CategoryTotal key={index} title={title} content={categoryData.content[index]} />
                 ))}
             </div>
         </div>
