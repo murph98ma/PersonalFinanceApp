@@ -1,19 +1,40 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import GrowthGraph from "./GrowthGraph";
 import "./Dashboard.css";
 import DataTable from "./TransactionTable";
 import DatePicker from "./DateSelection";
+import BankAccountTotals from "./BankAccountTotals";
 import { Button } from "@mui/material";
 import CategoryTotalList from "./CategoryTotalList";
+import axios from "axios";
 
 const Dashboard = () => {
+
+    const[accounts, setAccounts] = useState([]);
+  
+    useEffect(()=>{
+      axios.get("http://localhost:5000/bankAccountTotalData")
+      .then((response) => {
+          console.log("Bank Account Data API Call: ", response.data);
+          if (Array.isArray(response.data.accounts)) {
+            setAccounts(response.data.accounts);
+          } else {
+            console.error("Unexpected API response format:", response.data);
+          }
+      })
+      .catch((error) => {
+          console.error("Error fetching bank account data: ", error);
+      });
+    }, []);
+  
+    if(accounts.length === 0){
+      return <div>Loading Bank Account Data ...</div>
+    }
     
     return(
         <div className="grid-container">
             <div className="grid-item">
-                <div>Total: $30,000.00</div>
-                <div>NCACU: $20,000.00</div>
-                <div>Ally: $10,000.00</div>
+                <BankAccountTotals accounts={accounts}/>
             </div>
             <div className="grid-item">
             <div>Current Count: Name of Account</div>

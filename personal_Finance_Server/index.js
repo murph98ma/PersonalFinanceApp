@@ -37,9 +37,17 @@ app.get("/transactionData", (req , res) => {
             { date: "02-08-2025", description: "Gym Membership", category: "Health", amount: "$50.00", paymentMethod: "Credit Card" }
         ]
     });
-})
+});
 
+app.get("/bankAccountTotalData", (req, res) => {
 
+    res.json({
+        accounts:[
+            { id: 1, name: "NCACU", balance: 20000 },
+            { id: 2, name: "Ally", balance: 10000 }        
+        ]
+    });
+});
 
 app.listen(port, () =>{
     console.log(`Listening on port ${port}`);
