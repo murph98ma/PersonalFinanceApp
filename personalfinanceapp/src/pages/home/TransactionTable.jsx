@@ -34,7 +34,7 @@ function DataTable() {
           <tr>
             {columns.map((col) => (
               <th key={col} className="table-header">
-                {col.charAt(0).toUpperCase() + col.slice(1)} {/* Capitalize headers */}
+                {col.charAt(0).toUpperCase() + col.slice(1)} 
               </th>
             ))}
           </tr>
@@ -44,7 +44,7 @@ function DataTable() {
             <tr key={rowIndex} className="table-row">
               {columns.map((col) => (
                 <td key={col} className="table-cell">
-                  {transaction[col]} {/* Fix: Access data from the transaction object */}
+                  {transaction[col]}
                 </td>
               ))}
             </tr>
