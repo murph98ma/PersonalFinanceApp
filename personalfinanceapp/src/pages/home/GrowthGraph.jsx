@@ -9,7 +9,7 @@ function GrowthChart(props){
   const[chartData, setChartData] = useState({months: [], values: []});
 
   useEffect(() => {
-    axios.get("http://localhost:5000/growthTable")
+    axios.get("http://localhost:5000/growthTable") 
     .then((response) =>{
       console.log(response.data);
       setChartData({

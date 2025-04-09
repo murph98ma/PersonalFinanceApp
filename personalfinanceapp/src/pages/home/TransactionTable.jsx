@@ -3,13 +3,22 @@ import axios from "axios";
 import "./TransactionTable.css";
 
 function DataTable() {
-  const [transactions, setTransactions] = useState([]); // Fix: Initialize as an empty array
+  const [transactions, setTransactions] = useState([]); 
+  const[isScrollable, setIsScrollable] = useState(false);
+
+  // useEffect(() => {
+  //   const checkScrollable = () => {
+  //     if(scrollRef.current){
+  //       const hasOverflow
+  //     }
+  //   }
+  // })
 
   useEffect(() => {
     axios.get("http://localhost:5000/transactionData")
       .then((response) => {
         if (response.data.transactions) {
-          setTransactions(response.data.transactions); // Fix: Save transactions as an array
+          setTransactions(response.data.transactions); 
         } else {
           console.error("Unexpected format", response.data);
         }

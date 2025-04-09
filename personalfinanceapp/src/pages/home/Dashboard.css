@@ -58,6 +58,8 @@
     justify-content: top;
     background-color: whitesmoke;
     border-radius: 10px;
+    overflow-x: auto;
+    overflow: hidden;
 }
 
 /* Category totals item that spans 2 columns */
