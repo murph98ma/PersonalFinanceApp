@@ -34,12 +34,28 @@ app.get("/transactionData", (req , res) => {
             { date: "02-18-2025", description: "Gas Station", category: "Transport", amount: "$45.67", paymentMethod: "Debit Card" },
             { date: "02-15-2025", description: "Movie Night", category: "Entertainment", amount: "$30.00", paymentMethod: "Cash" },
             { date: "02-10-2025", description: "Electricity Bill", category: "Utilities", amount: "$120.50", paymentMethod: "Online Payment" },
-            { date: "02-08-2025", description: "Gym Membership", category: "Health", amount: "$50.00", paymentMethod: "Credit Card" }
+            { date: "02-08-2025", description: "Gym Membership", category: "Health", amount: "$50.00", paymentMethod: "Credit Card" },
+            { date: "02-10-2025", description: "Electricity Bill", category: "Utilities", amount: "$120.50", paymentMethod: "Online Payment" },
+            { date: "02-10-2025", description: "Electricity Bill", category: "Utilities", amount: "$120.50", paymentMethod: "Online Payment" },
+            { date: "02-10-2025", description: "Electricity Bill", category: "Utilities", amount: "$120.50", paymentMethod: "Online Payment" },
+            { date: "02-10-2025", description: "Electricity Bill", category: "Utilities", amount: "$120.50", paymentMethod: "Online Payment" },
+            { date: "02-10-2025", description: "Electricity Bill", category: "Utilities", amount: "$120.50", paymentMethod: "Online Payment" },
+            { date: "02-10-2025", description: "Electricity Bill", category: "Utilities", amount: "$120.50", paymentMethod: "Online Payment" },
+            { date: "02-10-2025", description: "Electricity Bill", category: "Utilities", amount: "$120.50", paymentMethod: "Online Payment" },
+            { date: "02-10-2025", description: "Electricity Bill", category: "Utilities", amount: "$120.50", paymentMethod: "Online Payment" },
         ]
     });
-})
+});
 
+app.get("/bankAccountTotalData", (req, res) => {
 
+    res.json({
+        accounts:[
+            { id: 1, name: "NCACU", balance: 20000 },
+            { id: 2, name: "Ally", balance: 10000 }        
+        ]
+    });
+});
 
 app.listen(port, () =>{
     console.log(`Listening on port ${port}`);

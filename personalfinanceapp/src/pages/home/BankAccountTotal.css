@@ -1,0 +1,16 @@
+/* .bankAccountTotal{
+    display: flex;
+    flex-direction: column;
+    height: 15%;
+} */
+
+.eachBankAccount{
+    background-color: darkgray;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.smallerMargin{
+    margin: 3px;
+    color: black;
+}
