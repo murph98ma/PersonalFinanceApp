@@ -5,6 +5,10 @@ import "./BankAccountTotal.css";
 const BankAccountTotals = ({ accounts }) => {
   const totalBalance = accounts.reduce((sum, account) => sum + account.balance, 0);
 
+  if(accounts.length === 0){
+    return <div>Loading Bank Account Data ...</div>
+}
+
   return (
     <div className="grid gap-4 p-4">
       <div className="p-4 shadow-lg eachBankAccount">

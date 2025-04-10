@@ -6,30 +6,35 @@ import DatePicker from "./DateSelection";
 import BankAccountTotals from "./BankAccountTotals";
 import { Button } from "@mui/material";
 import CategoryTotalList from "./CategoryTotalList";
-import axios from "axios";
+import { getBankAccountTotalData } from "./getAPICalls";
+import {getCategoryTotalData} from "./getAPICalls";
 
 const Dashboard = () => {
 
+    //#region API calls
     const[accounts, setAccounts] = useState([]);
-  
-    useEffect(()=>{
-      axios.get("http://localhost:5000/bankAccountTotalData")
-      .then((response) => {
-          console.log("Bank Account Data API Call: ", response.data);
-          if (Array.isArray(response.data.accounts)) {
-            setAccounts(response.data.accounts);
-          } else {
-            console.error("Unexpected API response format:", response.data);
-          }
-      })
-      .catch((error) => {
-          console.error("Error fetching bank account data: ", error);
-      });
+    useEffect(() => {
+        const getBankAccountComponentTotalData = async () => {
+            const data = await getBankAccountTotalData();
+            setAccounts(data);
+        };
+
+        getBankAccountComponentTotalData();
     }, []);
   
-    if(accounts.length === 0){
-      return <div>Loading Bank Account Data ...</div>
-    }
+   
+
+    const [categoryData, setCategoryData] = useState([]);
+    useEffect(() => {
+        const getCategoryComponentTotalData = async () => {
+            const data = await getCategoryTotalData();
+            setCategoryData(data);
+        }
+        getCategoryComponentTotalData();
+    }, []);
+
+    //#endregion
+
     
     return(
         <div className="grid-container">
@@ -43,7 +48,7 @@ const Dashboard = () => {
             </div>
             <div className="grid-item category-totals">
                 <p>Category Totals</p>
-                <CategoryTotalList />
+                <CategoryTotalList  categories={categoryData}/>
             </div>
             <div className="transaction-history">
                 <DataTable  />

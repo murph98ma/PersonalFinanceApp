@@ -1,34 +1,20 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./TransactionTable.css";
+import { getTransactionData } from "./getAPICalls";
 
 function DataTable() {
-  const [transactions, setTransactions] = useState([]); 
-  const[isScrollable, setIsScrollable] = useState(false);
-
-  // useEffect(() => {
-  //   const checkScrollable = () => {
-  //     if(scrollRef.current){
-  //       const hasOverflow
-  //     }
-  //   }
-  // })
+  const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/transactionData")
-      .then((response) => {
-        if (response.data.transactions) {
-          setTransactions(response.data.transactions); 
-        } else {
-          console.error("Unexpected format", response.data);
-        }
-      })
-      .catch((error) => {
-        console.log("Error fetching transaction data:", error);
-      });
+    const getTransactionTableData = async () => {
+      const data = await getTransactionData();
+      setTransactions(data);
+    };
+
+    getTransactionTableData();
   }, []);
 
-  // Fix: Check if transactions array is empty
   if (transactions.length === 0) {
     return <div>Loading Transaction Data...</div>;
   }
