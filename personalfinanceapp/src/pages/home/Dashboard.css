@@ -60,6 +60,7 @@
     border-radius: 10px;
     overflow-x: auto;
     overflow: hidden;
+    min-height: 150px;
 }
 
 /* Category totals item that spans 2 columns */

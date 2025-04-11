@@ -1,40 +1,58 @@
 import React, {useEffect, useState} from "react";
 import GrowthGraph from "./GrowthGraph";
 import "./Dashboard.css";
-import DataTable from "./TransactionTable";
+import TransactionTable from "./TransactionTable";
 import DatePicker from "./DateSelection";
 import BankAccountTotals from "./BankAccountTotals";
 import { Button } from "@mui/material";
 import CategoryTotalList from "./CategoryTotalList";
-import axios from "axios";
+import { getGrowthChartData, getTransactionTableData, getCategoryTotalData, getBankAccountTotalData } from "./getAPICalls";
 
 const Dashboard = () => {
 
-    const[accounts, setAccounts] = useState([]);
-  
-    useEffect(()=>{
-      axios.get("http://localhost:5000/bankAccountTotalData")
-      .then((response) => {
-          console.log("Bank Account Data API Call: ", response.data);
-          if (Array.isArray(response.data.accounts)) {
-            setAccounts(response.data.accounts);
-          } else {
-            console.error("Unexpected API response format:", response.data);
-          }
-      })
-      .catch((error) => {
-          console.error("Error fetching bank account data: ", error);
-      });
+    //#region API calls
+    const[accountData, setAccounts] = useState([]);
+    useEffect(() => {
+        const getBankAccountComponentTotalData = async () => {
+            const data = await getBankAccountTotalData();
+            setAccounts(data);
+        };
+        getBankAccountComponentTotalData();
     }, []);
   
-    if(accounts.length === 0){
-      return <div>Loading Bank Account Data ...</div>
-    }
+   const [categoryData, setCategoryData] = useState([]);
+    useEffect(() => {
+        const getCategoryComponentTotalData = async () => {
+            const data = await getCategoryTotalData();
+            setCategoryData(data);
+        }
+        getCategoryComponentTotalData();
+    }, []);
+
+    const[transactionData, setTransactions] = useState([]);
+    useEffect(() =>{
+        const getTransactionTableComponentData = async () =>{
+            const data = await getTransactionTableData();
+             setTransactions(data);
+        }
+         getTransactionTableComponentData();
+    }, []);
+
+    const [chartData, setChartData] = useState([]);
+    useEffect(() => {
+        const getGrowthChartComponentData = async () =>{
+            const data = await getGrowthChartData();
+            setChartData(data);
+        }
+        getGrowthChartComponentData();
+    }, []);
+    //#endregion
+
     
     return(
         <div className="grid-container">
             <div className="grid-item">
-                <BankAccountTotals accounts={accounts}/>
+                <BankAccountTotals accounts={accountData}/>
             </div>
             <div className="grid-item">
             <div>Current Count: Name of Account</div>
@@ -43,13 +61,13 @@ const Dashboard = () => {
             </div>
             <div className="grid-item category-totals">
                 <p>Category Totals</p>
-                <CategoryTotalList />
+                <CategoryTotalList  categories={categoryData}/>
             </div>
             <div className="transaction-history">
-                <DataTable  />
+                <TransactionTable  transactions={transactionData} />
             </div>
             <div className="grid-item growth-graph">
-                <GrowthGraph />
+                <GrowthGraph chartData={chartData}/>
             </div>
             <div className="grid-item">
                 <div className="grid-date-selection-component">
