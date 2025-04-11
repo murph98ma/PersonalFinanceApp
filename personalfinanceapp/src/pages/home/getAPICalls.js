@@ -5,7 +5,7 @@ const serverURL = "http://localhost:5000";
 
 
 //#region Transacation Table Get Call
-export const getTransactionData = async () =>{
+export const getTransactionTableData = async () =>{
     try{
         const response = await axios.get(serverURL + "/transactionData");
         return response.data.transactions || [];
@@ -32,11 +32,25 @@ export const getBankAccountTotalData = async () => {
 export const getCategoryTotalData = async () => {
     try{
         const response = await axios.get(serverURL + "/categoryTotal");
-        console.log("Category Total Data Response: ", response.data);
         return response.data.categories || [];
     }catch(error){
         console.error("Error getting cagtegory total data: ", error);
-        return {title: [], content: []};
+        return [];
+    }
+}
+//#endregion
+
+//#region Growth Graph Get Route
+export const getGrowthChartData = async () => {
+    try{
+        const response = await axios.get(serverURL + "/growthTable");
+        return {
+            months: response.data.months || [],
+            values: response.data.values || []
+        };
+    }catch(error){
+        console.error("Error getting Growth Chart data:", error);
+        return [];
     }
 }
 //#endregion

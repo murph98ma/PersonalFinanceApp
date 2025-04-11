@@ -1,30 +1,26 @@
 import React, {useEffect, useState} from "react";
 import GrowthGraph from "./GrowthGraph";
 import "./Dashboard.css";
-import DataTable from "./TransactionTable";
+import TransactionTable from "./TransactionTable";
 import DatePicker from "./DateSelection";
 import BankAccountTotals from "./BankAccountTotals";
 import { Button } from "@mui/material";
 import CategoryTotalList from "./CategoryTotalList";
-import { getBankAccountTotalData } from "./getAPICalls";
-import {getCategoryTotalData} from "./getAPICalls";
+import { getGrowthChartData, getTransactionTableData, getCategoryTotalData, getBankAccountTotalData } from "./getAPICalls";
 
 const Dashboard = () => {
 
     //#region API calls
-    const[accounts, setAccounts] = useState([]);
+    const[accountData, setAccounts] = useState([]);
     useEffect(() => {
         const getBankAccountComponentTotalData = async () => {
             const data = await getBankAccountTotalData();
             setAccounts(data);
         };
-
         getBankAccountComponentTotalData();
     }, []);
   
-   
-
-    const [categoryData, setCategoryData] = useState([]);
+   const [categoryData, setCategoryData] = useState([]);
     useEffect(() => {
         const getCategoryComponentTotalData = async () => {
             const data = await getCategoryTotalData();
@@ -33,13 +29,30 @@ const Dashboard = () => {
         getCategoryComponentTotalData();
     }, []);
 
+    const[transactionData, setTransactions] = useState([]);
+    useEffect(() =>{
+        const getTransactionTableComponentData = async () =>{
+            const data = await getTransactionTableData();
+             setTransactions(data);
+        }
+         getTransactionTableComponentData();
+    }, []);
+
+    const [chartData, setChartData] = useState([]);
+    useEffect(() => {
+        const getGrowthChartComponentData = async () =>{
+            const data = await getGrowthChartData();
+            setChartData(data);
+        }
+        getGrowthChartComponentData();
+    }, []);
     //#endregion
 
     
     return(
         <div className="grid-container">
             <div className="grid-item">
-                <BankAccountTotals accounts={accounts}/>
+                <BankAccountTotals accounts={accountData}/>
             </div>
             <div className="grid-item">
             <div>Current Count: Name of Account</div>
@@ -51,10 +64,10 @@ const Dashboard = () => {
                 <CategoryTotalList  categories={categoryData}/>
             </div>
             <div className="transaction-history">
-                <DataTable  />
+                <TransactionTable  transactions={transactionData} />
             </div>
             <div className="grid-item growth-graph">
-                <GrowthGraph />
+                <GrowthGraph chartData={chartData}/>
             </div>
             <div className="grid-item">
                 <div className="grid-date-selection-component">

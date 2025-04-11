@@ -1,20 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./TransactionTable.css";
-import { getTransactionData } from "./getAPICalls";
 
-function DataTable() {
-  const [transactions, setTransactions] = useState([]);
-
-  useEffect(() => {
-    const getTransactionTableData = async () => {
-      const data = await getTransactionData();
-      setTransactions(data);
-    };
-
-    getTransactionTableData();
-  }, []);
-
+function TransactionTable({transactions}) {
+  
   if (transactions.length === 0) {
     return <div>Loading Transaction Data...</div>;
   }
@@ -50,4 +39,4 @@ function DataTable() {
   );
 }
 
-export default DataTable;
+export default TransactionTable;
