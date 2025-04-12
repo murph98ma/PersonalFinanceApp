@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import GrowthGraph from "./GrowthGraph";
 import "./Dashboard.css";
 import TransactionTable from "./TransactionTable";
@@ -6,10 +6,12 @@ import DatePicker from "./DateSelection";
 import BankAccountTotals from "./BankAccountTotals";
 import { Button } from "@mui/material";
 import CategoryTotalList from "./CategoryTotalList";
-import { getGrowthChartData, getTransactionTableData, getCategoryTotalData, getBankAccountTotalData } from "./getAPICalls";
+import { getGrowthChartData, getTransactionTableData, getCategoryTotalData, getBankAccountTotalData, getDebtTotalData } from "./getAPICalls";
 
 const Dashboard = () => {
-
+    // const[shortestHeight, setShortestHeight] = useState(null);
+    // const balanceRef = useRef(null);
+    // const debtRef = useRef(null);
     //#region API calls
     const[accountData, setAccounts] = useState([]);
     useEffect(() => {
@@ -18,6 +20,15 @@ const Dashboard = () => {
             setAccounts(data);
         };
         getBankAccountComponentTotalData();
+    }, []);
+
+    const[debtData, setDebts] = useState([]);
+    useEffect(() => {
+        const getDebtTotalComponentData = async () => {
+            const data = await getDebtTotalData();
+            setDebts(data);
+        };
+        getDebtTotalComponentData();
     }, []);
   
    const [categoryData, setCategoryData] = useState([]);
@@ -48,11 +59,34 @@ const Dashboard = () => {
     }, []);
     //#endregion
 
+    //#region Styling
+    // useEffect(() =>{
+    //     if(balanceRef.current && debtRef.current){
+    //         const balanceHeight = balanceRef.current.offsetHeight;
+    //         const debtHeight = debtRef.current.offsetHeight;
+    //         const shorter = Math.min(balanceHeight, debtHeight);
+    //         setShortestHeight(shorter);
+    //         console.log("Balance Height: " + balanceHeight + ", debtheight: " + debtHeight + ", shorter: " + shorter);
+    //     }
+    // }, [accountData, debtData]);
+
+   
+
+    // const sharedStyle = {
+    //     height: shortestHeight ? '${shortestHeight}px' : "auto",
+    //     overflowY: "auto",
+    //     backgroundColor: "whitesmoke",
+    //     borderRadius: "10px",
+    //     padding: "10px",
+    //     boxSizing: "border-box"
+    // }
+
     
+    //#endregion
     return(
         <div className="grid-container">
-            <div className="grid-item">
-                <BankAccountTotals accounts={accountData}/>
+            <div className="grid-item account-total-grid-item">
+                <BankAccountTotals accounts={accountData} label="Total Balance"/>
             </div>
             <div className="grid-item">
             <div>Current Count: Name of Account</div>
@@ -76,11 +110,8 @@ const Dashboard = () => {
                 </div>
                 <div className="submit-button"><Button variant="contained">submit</Button></div>
             </div>
-            <div className="grid-item">
-                <div>
-                    {/* <p>Debts</p>
-                    <CategoryTotalList /> */}
-                </div>
+            <div className="grid-item account-total-grid-item">
+               <BankAccountTotals accounts={debtData} label="Total Debt" />
             </div>
         </div>
     )

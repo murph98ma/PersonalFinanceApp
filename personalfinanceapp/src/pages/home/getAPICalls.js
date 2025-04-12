@@ -28,6 +28,17 @@ export const getBankAccountTotalData = async () => {
 }
 //#endregion
 
+//#region Debt Total Get Route
+export const getDebtTotalData = async () => {
+    try{
+        const response = await axios.get(serverURL + "/debtTotalData");
+        return response.data.accounts || [];
+    }catch(error){
+         console.error("Error when getting debt data:", error);
+    }
+}
+//#endregion
+
 //#region Category Total Get Route
 export const getCategoryTotalData = async () => {
     try{

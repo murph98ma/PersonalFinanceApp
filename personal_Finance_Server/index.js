@@ -16,12 +16,12 @@ app.get("/categoryTotal", (req, res) => {
     res.json({
 
         categories:[
-            {title: "Car", content: "$3,600.00"},
-            {title: "Student", content: "$20,000.00"},
-            {title: "Rent", content: "$1358.00"},
-            {title: "Groceries", content: "$500.00"},
-            {title: "Utilities", content: "$250.00"},
-            {title: "Entertainment", content: "$150.00"},
+            {title: "Car", content: "3600"},
+            {title: "Student", content: "20000"},
+            {title: "Rent", content: "1358"},
+            {title: "Groceries", content: "500"},
+            {title: "Utilities", content: "250"},
+            {title: "Entertainment", content: "150"},
         ]
     });
 });
@@ -56,6 +56,20 @@ app.get("/bankAccountTotalData", (req, res) => {
         ]
     });
 });
+
+app.get("/debtTotalData", (req, res) =>{
+    res.json({
+        accounts:[
+            {id: 1, name: "Toyota Tacoma", balance: 16000},
+            {id: 2, name: "Student Loans", balance: 18000},
+            {id: 3, name: "Toyota Tacoma", balance: 16000},
+            {id: 4, name: "Toyota Tacoma", balance: 16000},
+            {id: 5, name: "Toyota Tacoma", balance: 16000},
+            {id: 6, name: "Toyota Tacoma", balance: 16000},
+            {id: 7, name: "Toyota Tacoma", balance: 16000},
+        ]
+    })
+})
 
 app.listen(port, () =>{
     console.log(`Listening on port ${port}`);

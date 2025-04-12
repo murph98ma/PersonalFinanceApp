@@ -1,9 +1,3 @@
-/* .bankAccountTotal{
-    display: flex;
-    flex-direction: column;
-    height: 15%;
-} */
-
 .eachBankAccount{
     background-color: darkgray;
     margin: 10px;
@@ -14,3 +8,4 @@
     margin: 3px;
     color: black;
 }
+

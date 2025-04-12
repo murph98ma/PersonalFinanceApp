@@ -24,8 +24,17 @@
     font-weight: bold;
     border: 0px solid black;
     height: 100%;
-    border-radius: 10px; /* Ensure the grid items expand to fill their respective rows */
+    border-radius: 10px;
 }
+
+.account-total-grid-item{
+    overflow-y: auto; 
+    height: 100%;     
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
 
 .grid-date-selection-component{
     display: flex;
