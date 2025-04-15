@@ -9,9 +9,9 @@ import CategoryTotalList from "./CategoryTotalList";
 import { getGrowthChartData, getTransactionTableData, getCategoryTotalData, getBankAccountTotalData, getDebtTotalData } from "./getAPICalls";
 
 const Dashboard = () => {
-    // const[shortestHeight, setShortestHeight] = useState(null);
-    // const balanceRef = useRef(null);
-    // const debtRef = useRef(null);
+    // const[categoryHeight, setCategoryHeight] = useState(null);
+    // const categoryRef = useRef(null);
+
     //#region API calls
     const[accountData, setAccounts] = useState([]);
     useEffect(() => {
@@ -60,55 +60,54 @@ const Dashboard = () => {
     //#endregion
 
     //#region Styling
-    // useEffect(() =>{
-    //     if(balanceRef.current && debtRef.current){
-    //         const balanceHeight = balanceRef.current.offsetHeight;
-    //         const debtHeight = debtRef.current.offsetHeight;
-    //         const shorter = Math.min(balanceHeight, debtHeight);
-    //         setShortestHeight(shorter);
-    //         console.log("Balance Height: " + balanceHeight + ", debtheight: " + debtHeight + ", shorter: " + shorter);
+    // useEffect(() => {
+    //     if (categoryData.length > 0) {
+    //         requestAnimationFrame(() => {
+    //             if (categoryRef.current) {
+    //                 const height = categoryRef.current.offsetHeight;
+    //                 console.log("Measured category height: ", height);
+    //                 setCategoryHeight(height);
+    //             }
+    //         });
     //     }
-    // }, [accountData, debtData]);
-
-   
-
+    // }, [categoryData]);
+    
     // const sharedStyle = {
-    //     height: shortestHeight ? '${shortestHeight}px' : "auto",
+    //     height: categoryHeight ? `${categoryHeight}px` : "auto",
     //     overflowY: "auto",
     //     backgroundColor: "whitesmoke",
     //     borderRadius: "10px",
-    //     padding: "10px",
-    //     boxSizing: "border-box"
+    //      padding: "0px"
     // }
 
     
     //#endregion
     return(
         <div className="grid-container">
-            <div className="grid-item account-total-grid-item">
-                <BankAccountTotals accounts={accountData} label="Total Balance"/>
-            </div>
-            <div className="grid-item">
-            <div>Current Count: Name of Account</div>
-                <div>Actual</div>
-                <div>Actual - pending</div>
-            </div>
-            <div className="grid-item category-totals">
+            <div className="grid-item category-totals" >
                 <p>Category Totals</p>
-                <CategoryTotalList  categories={categoryData}/>
+                <CategoryTotalList  categories={categoryData} />
             </div>
             <div className="transaction-history">
                 <TransactionTable  transactions={transactionData} />
             </div>
-            <div className="grid-item growth-graph">
-                <GrowthGraph chartData={chartData}/>
+            <div className="grid-item growth-graph" >
+                <GrowthGraph chartData={chartData} />
             </div>
             <div className="grid-item">
-                <div className="grid-date-selection-component">
+                <div className="grid-date-selection-component" >
                     <div><DatePicker /> </div>
                     <div><DatePicker /> </div>
                 </div>
                 <div className="submit-button"><Button variant="contained">submit</Button></div>
+            </div>
+            <div className="grid-item account-total-grid-item" > 
+                <BankAccountTotals accounts={accountData} label="Total Balance"/>
+            </div>
+            <div className="grid-item" >
+            <div>Current Count: Name of Account</div>
+                <div>Actual</div>
+                <div>Actual - pending</div>
             </div>
             <div className="grid-item account-total-grid-item">
                <BankAccountTotals accounts={debtData} label="Total Debt" />
