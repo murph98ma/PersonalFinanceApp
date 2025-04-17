@@ -28,6 +28,30 @@ export const getBankAccountTotalData = async () => {
 }
 //#endregion
 
+//#region Total Money After Pending Get Route
+export const getPendingChargesData = async () => {
+    try{
+        const response = await axios.get(serverURL + "/pendingChargesData");
+        return response.data.pending || [];
+    }catch(error){
+        console.log("Error when getting pending charges data:", error);
+        return[];
+    }
+}
+//#endregion
+
+//#region Debt Total Get Route
+export const getDebtTotalData = async () => {
+    try{
+        const response = await axios.get(serverURL + "/debtTotalData");
+        return response.data.accounts || [];
+    }catch(error){
+         console.error("Error when getting debt data:", error);
+         return [];
+    }
+}
+//#endregion
+
 //#region Category Total Get Route
 export const getCategoryTotalData = async () => {
     try{

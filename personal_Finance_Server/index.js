@@ -16,12 +16,12 @@ app.get("/categoryTotal", (req, res) => {
     res.json({
 
         categories:[
-            {title: "Car", content: "$3,600.00"},
-            {title: "Student", content: "$20,000.00"},
-            {title: "Rent", content: "$1358.00"},
-            {title: "Groceries", content: "$500.00"},
-            {title: "Utilities", content: "$250.00"},
-            {title: "Entertainment", content: "$150.00"},
+            {title: "Car", content: "3600"},
+            {title: "Student", content: "20000"},
+            {title: "Rent", content: "1358"},
+            {title: "Groceries", content: "500"},
+            {title: "Utilities", content: "250"},
+            {title: "Entertainment", content: "150"},
         ]
     });
 });
@@ -52,10 +52,27 @@ app.get("/bankAccountTotalData", (req, res) => {
     res.json({
         accounts:[
             { id: 1, name: "NCACU", balance: 20000 },
-            { id: 2, name: "Ally", balance: 10000 }        
+            { id: 2, name: "Ally", balance: 10000 },    
         ]
     });
 });
+
+app.get("/debtTotalData", (req, res) =>{
+    res.json({
+        accounts:[
+            {id: 1, name: "Toyota Tacoma", balance: 16000},
+            {id: 2, name: "Student Loans", balance: 18000},
+        ]
+    })
+})
+
+app.get("/pendingChargesData", (req, res) => {
+    res.json({
+        pending:[
+            {id: 1, name: "Pending Charges", balance: 1000}
+        ]
+    })
+})
 
 app.listen(port, () =>{
     console.log(`Listening on port ${port}`);
