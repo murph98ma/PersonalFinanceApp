@@ -6,12 +6,10 @@ import DatePicker from "./DateSelection";
 import BankAccountTotals from "./BankAccountTotals";
 import { Button } from "@mui/material";
 import CategoryTotalList from "./CategoryTotalList";
-import { getGrowthChartData, getTransactionTableData, getCategoryTotalData, getBankAccountTotalData, getDebtTotalData } from "./getAPICalls";
+import { getGrowthChartData, getTransactionTableData, getCategoryTotalData, getBankAccountTotalData, getDebtTotalData, getPendingChargesData } from "./getAPICalls";
 
 const Dashboard = () => {
-    // const[categoryHeight, setCategoryHeight] = useState(null);
-    // const categoryRef = useRef(null);
-
+   
     //#region API calls
     const[accountData, setAccounts] = useState([]);
     useEffect(() => {
@@ -29,6 +27,15 @@ const Dashboard = () => {
             setDebts(data);
         };
         getDebtTotalComponentData();
+    }, []);
+
+    const[pendingData, setPending] = useState([]);
+    useEffect(() => {
+        const getPendingTotalComponentData = async () =>{
+            const data = await getPendingChargesData();
+            setPending(data);
+        }
+        getPendingTotalComponentData();
     }, []);
   
    const [categoryData, setCategoryData] = useState([]);
@@ -57,30 +64,7 @@ const Dashboard = () => {
         }
         getGrowthChartComponentData();
     }, []);
-    //#endregion
 
-    //#region Styling
-    // useEffect(() => {
-    //     if (categoryData.length > 0) {
-    //         requestAnimationFrame(() => {
-    //             if (categoryRef.current) {
-    //                 const height = categoryRef.current.offsetHeight;
-    //                 console.log("Measured category height: ", height);
-    //                 setCategoryHeight(height);
-    //             }
-    //         });
-    //     }
-    // }, [categoryData]);
-    
-    // const sharedStyle = {
-    //     height: categoryHeight ? `${categoryHeight}px` : "auto",
-    //     overflowY: "auto",
-    //     backgroundColor: "whitesmoke",
-    //     borderRadius: "10px",
-    //      padding: "0px"
-    // }
-
-    
     //#endregion
     return(
         <div className="grid-container">
@@ -105,9 +89,7 @@ const Dashboard = () => {
                 <BankAccountTotals accounts={accountData} label="Total Balance"/>
             </div>
             <div className="grid-item" >
-            <div>Current Count: Name of Account</div>
-                <div>Actual</div>
-                <div>Actual - pending</div>
+                <BankAccountTotals accounts={accountData} pending={pendingData} label="Total After Pending" />
             </div>
             <div className="grid-item account-total-grid-item">
                <BankAccountTotals accounts={debtData} label="Total Debt" />

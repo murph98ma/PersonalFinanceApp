@@ -66,6 +66,14 @@ app.get("/debtTotalData", (req, res) =>{
     })
 })
 
+app.get("/pendingChargesData", (req, res) => {
+    res.json({
+        pending:[
+            {id: 1, name: "Pending Charges", balance: 1000}
+        ]
+    })
+})
+
 app.listen(port, () =>{
     console.log(`Listening on port ${port}`);
 });
