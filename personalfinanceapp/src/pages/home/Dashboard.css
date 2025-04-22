@@ -7,7 +7,7 @@
     padding: 10px; /* Adjust padding to create spacing around grid items */
     background-color: white;
     margin: 0; /* Remove any margin */
-    height: 100vh; /* Ensure the grid takes up full height of the viewport */
+    height: 98vh; /* Ensure the grid takes up full height of the viewport */
     width: 100%; /* Ensure the grid takes up full width of the viewport */
     box-sizing: border-box; /* Ensures padding is included in the total width/height */
     padding-top: 50px;

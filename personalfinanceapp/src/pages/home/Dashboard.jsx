@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useRef} from "react";
 import GrowthGraph from "./GrowthGraph";
 import "./Dashboard.css";
-import TransactionTable from "./TransactionTable";
+import TransactionTable from "../SharedComponents/TransactionTable";
 import DatePicker from "./DateSelection";
 import BankAccountTotals from "./BankAccountTotals";
 import { Button } from "@mui/material";

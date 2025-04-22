@@ -5,6 +5,7 @@ const app = express();
 const port = 5000;
 app.use(cors());
 
+//#region dashboard page api calls
 app.get("/growthTable", (req, res) => {
     res.json({
         months: ["Jan", "Feb", "March", "April","May", "June"],
@@ -73,6 +74,30 @@ app.get("/pendingChargesData", (req, res) => {
         ]
     })
 })
+//#endregion
+
+//#region transactions page api calls
+app.get("/allTransactionData", (req, res) =>{
+    res.json({
+        transactions: [
+            { date: "02-22-2025", description: "Grocery Shopping", category: "Food", amount: "$75.30", paymentMethod: "Credit Card"},
+            { date: "02-20-2025", description: "Rent Payment", category: "Housing", amount: "$1,200.00", paymentMethod: "Bank Transfer" },
+            { date: "02-18-2025", description: "Gas Station", category: "Transport", amount: "$45.67", paymentMethod: "Debit Card" },
+            { date: "02-15-2025", description: "Movie Night", category: "Entertainment", amount: "$30.00", paymentMethod: "Cash" },
+            { date: "02-10-2025", description: "Electricity Bill", category: "Utilities", amount: "$120.50", paymentMethod: "Online Payment" },
+            { date: "02-08-2025", description: "Gym Membership", category: "Health", amount: "$50.00", paymentMethod: "Credit Card" },
+            { date: "02-10-2025", description: "Electricity Bill", category: "Utilities", amount: "$120.50", paymentMethod: "Online Payment" },
+            { date: "02-10-2025", description: "Electricity Bill", category: "Utilities", amount: "$120.50", paymentMethod: "Online Payment" },
+            { date: "02-10-2025", description: "Electricity Bill", category: "Utilities", amount: "$120.50", paymentMethod: "Online Payment" },
+            { date: "02-10-2025", description: "Electricity Bill", category: "Utilities", amount: "$120.50", paymentMethod: "Online Payment" },
+            { date: "02-10-2025", description: "Electricity Bill", category: "Utilities", amount: "$120.50", paymentMethod: "Online Payment" },
+            { date: "02-10-2025", description: "Electricity Bill", category: "Utilities", amount: "$120.50", paymentMethod: "Online Payment" },
+            { date: "02-10-2025", description: "Electricity Bill", category: "Utilities", amount: "$120.50", paymentMethod: "Online Payment" },
+            { date: "02-10-2025", description: "Electricity Bill", category: "Utilities", amount: "$120.50", paymentMethod: "Online Payment" },
+        ]
+    })
+});
+//#endregion
 
 app.listen(port, () =>{
     console.log(`Listening on port ${port}`);
