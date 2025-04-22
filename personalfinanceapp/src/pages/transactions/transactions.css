@@ -23,5 +23,36 @@
 
 .transaction-table{
     grid-row: span 2;
-    min-height: 250px
+    min-height: 250px;
+    font-size: 20px;
+    border: 0px solid black;
+    height: 100%;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+}
+
+.transaction-table-buttons{
+    display: flex;
+    padding:5px;
+    justify-content: right;
+    margin: 5px
+}
+
+.button-spacing{
+    margin:5px;
+}
+
+@media (max-width: 1024px) {
+    .transaction-grid-container {
+        grid-template-columns: auto; 
+        grid-template-rows: auto; 
+    }
+}
+
+@media (max-width: 768px) {
+    .transaction-grid-container {
+        grid-template-columns: 1fr;
+    }
 }

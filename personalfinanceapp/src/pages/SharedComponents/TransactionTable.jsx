@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Button } from "@mui/material";
 import "./TransactionTable.css";
 
-function TransactionTable({transactions}) {
+function TransactionTable({transactions, label}) {
   
   if (transactions.length === 0) {
     return <div>Loading Transaction Data...</div>;
