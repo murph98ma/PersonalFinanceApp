@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TransactionTable from "../SharedComponents/TransactionTable";
 import { getAllTransactionTableData } from "./getAPICalls";
+import FilterForm from "./filterForm";
 import "./secondaryButton.css"
 import "./transactions.css"
 
@@ -24,8 +25,7 @@ const Transactions = () => {
         </div>
         <div className="transaction-table">
           <div className="transaction-table-buttons">
-            <button className="btn btn-secondary button-spacing">Edit Transaction</button>
-            <button className="btn btn-secondary button-spacing">Add Transaction</button>
+            <FilterForm />
           </div>
            <TransactionTable transactions={allTransacitonData} />
         </div>
