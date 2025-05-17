@@ -12,3 +12,14 @@ export const getAllTransactionTableData = async () =>{
     }
 }
 //#endregion
+
+//#region Get Categories
+export const getAllCategories = async () => {
+    try{
+        const response = await axios.get(serverURL + "/allCategories");
+        return response.data.categories || [];
+    }catch(error){
+        console.error("Error when fetching categories list: ", error);
+        return [];
+    }
+}

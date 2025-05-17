@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import TransactionTable from "../SharedComponents/TransactionTable";
-import { getAllTransactionTableData } from "./getAPICalls";
+import { getAllCategories, getAllTransactionTableData } from "./getAPICalls";
 import FilterForm from "./filterForm";
 import "./secondaryButton.css"
 import "./transactions.css"
 
 const Transactions = () => {
   //#region API calls
+ 
   const[allTransacitonData, setAllTransactionData] = useState([]);
   useEffect(() => {
     const getAllTransactionTableComponentData = async () => {
@@ -15,6 +16,18 @@ const Transactions = () => {
     }
     getAllTransactionTableComponentData();
   }, []);
+  
+    const[allCategoryData, setAllCategoryData] = useState([]);
+    useEffect(() => {
+      const getAllCategoryDropDownData = async() => {
+        const data = await getAllCategories();
+        console.log("Fetched category data:", data);
+        setAllCategoryData(data);
+      }
+      getAllCategoryDropDownData();
+    }, []);
+
+  
   //#endregion
 
     return(
@@ -25,7 +38,7 @@ const Transactions = () => {
         </div>
         <div className="transaction-table">
           <div className="transaction-table-buttons">
-            <FilterForm />
+            <FilterForm categories={allCategoryData}/>
           </div>
            <TransactionTable transactions={allTransacitonData} />
         </div>

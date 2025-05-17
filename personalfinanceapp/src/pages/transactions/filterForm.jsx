@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-const FilterForm = () => {
+const FilterForm = ({categories}) => {
     const [amount, setAmount] = useState("");
     const[fromDate, setFromDate] = useState("");
     const[toDate, setToDate] = useState("");
@@ -41,9 +41,13 @@ const FilterForm = () => {
                 onChange={(e) => setCategory(e.target.value)}
                 required
             >
-                <option value="user">User</option>
-                <option value="admin">Admin</option>
-                <option value="moderator">Moderator</option>
+                <option value="">Select Category</option>
+                {categories?.length > 0 &&
+                    categories.map((cat, index) => (
+                    <option key={index} value={cat.toLowerCase()}>
+                      {cat}
+                    </option>
+                ))}
             </select>
       <button className="btn btn-secondary button-spacing" type="submit">Submit</button>
       <button className="btn btn-secondary button-spacing">Edit Transaction</button>

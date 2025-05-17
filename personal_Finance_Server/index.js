@@ -97,6 +97,13 @@ app.get("/allTransactionData", (req, res) =>{
         ]
     })
 });
+
+
+app.get("/allCategories", (req, res) =>{
+        res.json({
+            categories:["Car", "Student", "Rent", "Groceries", "Utilities", "Entertainment" ]
+        })
+});
 //#endregion
 
 app.listen(port, () =>{
