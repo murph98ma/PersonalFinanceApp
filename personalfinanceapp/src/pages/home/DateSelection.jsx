@@ -18,7 +18,6 @@ const DatePicker = () => {
           value={selectedDate}
           onChange={handleDateChange}
           fullWidth
-          margin="normal"
           variant="outlined"
         />
       </CardContent>

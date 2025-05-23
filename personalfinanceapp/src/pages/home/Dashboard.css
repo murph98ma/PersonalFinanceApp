@@ -73,6 +73,12 @@
   
 }
 
+.date-selection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 @media (max-width: 1024px) {
     .grid-container {
         grid-template-columns: repeat(2, 1fr);

@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import "./filterForm.css";
 
 const FilterForm = ({categories}) => {
     const [amount, setAmount] = useState("");
@@ -13,14 +14,21 @@ const FilterForm = ({categories}) => {
 
     return(
         <form onSubmit={handleSubmit}>
-            <div>
+            <div className="filter-selection">
+            <div className="form-divs">
+            <label htmlFor="amount">Amount</label>
             <input 
                 type="number"
                 name="amount"
                 placeholder="Enter Amount"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
+                min="0"
+                step="0.01"
             />
+            </div>
+            <div className="form-divs">
+             <label htmlFor="fromDate">From</label>
              <input 
                 type="date"
                 name="fromDate"
@@ -28,6 +36,9 @@ const FilterForm = ({categories}) => {
                 value={fromDate}
                 onChange={(e) => setFromDate(e.target.value)}
             />
+            </div>
+            <div className="form-divs">
+            <label htmlFor="toDate">To</label>
              <input 
                 type="date"
                 name="toDate"
@@ -35,11 +46,13 @@ const FilterForm = ({categories}) => {
                 value={toDate}
                 onChange={(e) => setToDate(e.target.value)}
             />
+            </div>
+            <div className="form-divs">
+            <label htmlFor="category">Category</label>
             <select
                 name="category"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                required
             >
                 <option value="">Select Category</option>
                 {categories?.length > 0 &&
@@ -49,6 +62,7 @@ const FilterForm = ({categories}) => {
                     </option>
                 ))}
             </select>
+            </div>
       <button className="btn btn-secondary button-spacing" type="submit">Submit</button>
       <button className="btn btn-secondary button-spacing">Edit Transaction</button>
       <button className="btn btn-secondary button-spacing">Add Transaction</button>

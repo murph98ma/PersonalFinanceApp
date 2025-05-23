@@ -23,3 +23,4 @@ export const getAllCategories = async () => {
         return [];
     }
 }
+//#endregion
