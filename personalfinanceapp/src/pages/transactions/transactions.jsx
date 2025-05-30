@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import TransactionTable from "../SharedComponents/TransactionTable";
 import { getAllCategories, getAllTransactionTableData } from "./getAPICalls";
 import FilterForm from "./filterForm";
+import AccountOrDebtForm from "./addAcountDebtForm";
 import "./secondaryButton.css"
 import "./transactions.css"
 
@@ -32,9 +33,8 @@ const Transactions = () => {
 
     return(
       <div className="transaction-grid-container">
-        <div className="transaction-grid-item">
-          <h2>Add Account/Add Debt</h2>
-          <p>Can add a bank accouunt or debt account here</p>
+        <div className="transaction-grid-item add-account-debt">
+          <AccountOrDebtForm /> 
         </div>
         <div className="transaction-table">
           <div className="transaction-table-buttons">
