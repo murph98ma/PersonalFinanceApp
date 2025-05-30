@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from "axios";
-
-const serverURL = "http://localhost:5000";
+import { serverURL } from '../../utils/contants';
 
 
 //#region Transacation Table Get Call

@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useRef} from "react";
 import GrowthGraph from "./GrowthGraph";
 import "./Dashboard.css";
-import TransactionTable from "./TransactionTable";
+import TransactionTable from "../SharedComponents/TransactionTable";
 import DatePicker from "./DateSelection";
 import BankAccountTotals from "./BankAccountTotals";
 import { Button } from "@mui/material";
@@ -80,8 +80,18 @@ const Dashboard = () => {
             </div>
             <div className="grid-item">
                 <div className="grid-date-selection-component" >
-                    <div><DatePicker /> </div>
-                    <div><DatePicker /> </div>
+                    <div>
+                        <div className="date-selection" name="fromDate">
+                        <label htmlFor="fromDate">From</label>
+                        <DatePicker /> 
+                     </div> 
+                    </div>
+                    <div>
+                        <div className="date-selection" name="toDate">
+                        <label htmlFor="toDate">To</label>
+                        <DatePicker /> 
+                     </div> 
+                    </div>
                 </div>
                 <div className="submit-button"><Button variant="contained">submit</Button></div>
             </div>

@@ -1,11 +1,9 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import AppBar from './pages/home/AppBar'
+import AppBar from './pages/SharedComponents/AppBar'
 import Dashboard from './pages/home/Dashboard'
 import Transactions from './pages/transactions/transactions'
-import Settings from './pages/settings/settings'
+import Settings from './pages/UserSettings/settings'
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
 
