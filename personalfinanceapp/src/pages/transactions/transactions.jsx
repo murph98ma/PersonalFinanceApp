@@ -4,6 +4,7 @@ import { getAllCategories, getAllTransactionTableData } from "./getAPICalls";
 import FilterForm from "./filterForm";
 import AccountOrDebtForm from "./addAcountDebtForm";
 import "./secondaryButton.css"
+import "./primaryButton.css"
 import "./transactions.css"
 
 const Transactions = () => {
@@ -34,7 +35,12 @@ const Transactions = () => {
     return(
       <div className="transaction-grid-container">
         <div className="transaction-grid-item add-account-debt">
-          <AccountOrDebtForm /> 
+          <div className="add-account-debt-item">
+            <AccountOrDebtForm /> 
+          </div>
+          <div className="add-account-debt-item">
+            <h3>List of accounts</h3>
+          </div>
         </div>
         <div className="transaction-table">
           <div className="transaction-table-buttons">

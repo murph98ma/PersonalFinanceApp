@@ -47,13 +47,17 @@
 .add-account-debt{
     display: flex;
     flex-direction: row;
-    
     gap: 20px;
 }
 .add-account-debt-item{
     display: flex;
     justify-content: center;
+    border: 2px solid black ;
+    background-color: lightgray;
+    border-width: 2px;
+    border-radius: 10px;
     width: 45%;
+    height: 90%;
 }
 
 @media (max-width: 1024px) {

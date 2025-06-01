@@ -1,0 +1,19 @@
+.primary-button {
+  background-color: black; 
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.primary-button:hover {
+  background-color: darkblue;
+}
+
+.primary-button:disabled {
+  background-color: #a0c5f7;
+  cursor: not-allowed;
+}
