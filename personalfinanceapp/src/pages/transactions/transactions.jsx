@@ -3,6 +3,7 @@ import TransactionTable from "../SharedComponents/TransactionTable";
 import { getAllCategories, getAllTransactionTableData } from "./getAPICalls";
 import FilterForm from "./filterForm";
 import AccountOrDebtForm from "./addAcountDebtForm";
+import ListOfAccounts from "./ListOfAccounts";
 import "./secondaryButton.css"
 import "./primaryButton.css"
 import "./transactions.css"
@@ -39,7 +40,7 @@ const Transactions = () => {
             <AccountOrDebtForm /> 
           </div>
           <div className="add-account-debt-item">
-            <h3>List of accounts</h3>
+            <ListOfAccounts />
           </div>
         </div>
         <div className="transaction-table">
