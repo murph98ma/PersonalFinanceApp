@@ -1,0 +1,46 @@
+.addAccountDebt{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 0px;
+}
+
+.form-divs-accounts{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px;
+    padding: 1px;
+    color: black;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding-top: 20px;
+}
+
+.form-divs-checkboxes{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px;
+    color: black;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+.checkbox-spacing{
+    padding-right: 30px;
+}
+
+.form-title-accounts{
+    display:flex; 
+    flex-direction: column;
+    align-items: center;
+    color: black;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+.header-adjustments{
+    margin: 15px;
+}

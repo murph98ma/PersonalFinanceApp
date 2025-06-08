@@ -1,7 +1,8 @@
 .eachBankAccount{
-    background-color: darkgray;
+    background-color: lightgray;
     margin: 10px;
     border-radius: 5px;
+    border: 2px solid black;
 }
 
 .smallerMargin{
