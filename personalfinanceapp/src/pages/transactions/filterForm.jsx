@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import "./filterForm.css";
 
-const FilterForm = ({categories}) => {
+const FilterForm = ({categories, onAddTransactionClick}) => {
     const [amount, setAmount] = useState("");
     const[fromDate, setFromDate] = useState("");
     const[toDate, setToDate] = useState("");
@@ -65,9 +65,16 @@ const FilterForm = ({categories}) => {
             </div>
       <button className="btn btn-secondary button-spacing" type="submit">Submit</button>
       <button className="btn btn-secondary button-spacing">Edit Transaction</button>
-      <button className="btn btn-secondary button-spacing">Add Transaction</button>
+      <button 
+         className="btn btn-secondary button-spacing"
+         type="button"
+         onClick={onAddTransactionClick}
+      >
+       Add Transaction
+      </button>
+      
       </div>
-        </form>
+    </form>
     );  
 }
 
