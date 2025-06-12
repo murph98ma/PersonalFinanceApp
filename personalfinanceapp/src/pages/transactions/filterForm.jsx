@@ -79,3 +79,4 @@ const FilterForm = ({categories, onAddTransactionClick}) => {
 }
 
 export default FilterForm;
+

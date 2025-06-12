@@ -60,7 +60,7 @@ const Transactions = () => {
           <p>Choose how deposits are split up into categories</p>
           <p>Add categories</p>
         </div>
-          {showAddTransactionDialog && (<AddTransaction onClose={() => setShowAddTransactionDialog(false)} />)}
+          {showAddTransactionDialog && (<AddTransaction onClose={() => setShowAddTransactionDialog(false)} categories={allCategoryData} />)}
       </div>
     );
   };
