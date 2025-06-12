@@ -4,7 +4,7 @@ import { getAllCategories, getAllTransactionTableData } from "./getAPICalls";
 import FilterForm from "./filterForm";
 import AccountOrDebtForm from "./addAcountDebtForm";
 import ListOfAccounts from "./ListOfAccounts";
-import AddTransaction from "./AddTransaction";
+import AddTransaction from "./addTransaction";
 import "./secondaryButton.css"
 import "./primaryButton.css"
 import "./transactions.css"

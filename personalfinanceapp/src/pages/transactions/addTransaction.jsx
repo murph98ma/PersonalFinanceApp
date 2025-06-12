@@ -1,4 +1,6 @@
 import React, {useState} from "react";
+import AddDeposit from "./deposit";
+import AddDebit from "./debit";
 import "./addTransaction.css"
 
 const AddTransaction = ({onClose}) => {
@@ -10,15 +12,18 @@ const AddTransaction = ({onClose}) => {
     return(
      <div className="overlay">
         <div className="content">
+            <div className="position-add-transaction-close-button">
             <button onClick={onClose}>X</button>
-            <div>
+            </div>
+            <h3>Choose Transaction Type</h3>
+            <div className="position-checkboxes">
                 <label>
                     <input
                         type ="checkbox"
                         checked = {transactionTypeSelection === 'Deposit'}
                         onChange={() => handleTransactionTypeCheck('Deposit')}
                     />
-                    Show Deposit Form
+                    Deposit
                 </label>
                 <label>
                     <input
@@ -26,21 +31,22 @@ const AddTransaction = ({onClose}) => {
                         checked={transactionTypeSelection === "Debit"}
                         onChange={() => handleTransactionTypeCheck('Debit')}
                     />
-                    Show Debit Form
+                    Debit
                 </label>
             </div>
             <div>
                 {transactionTypeSelection === 'Deposit' &&(
                     <div>
-                        <h3>Deposit Form is showing!!!</h3>
+                        <AddDeposit />
                     </div> 
                 )}
                 {transactionTypeSelection === 'Debit' && (
                     <div> 
-                        <h3>DEBIT FORM IS SHOWING</h3>
+                        <AddDebit />
                     </div>
                 )}
             </div>
+         
         </div> 
     </div>
     );  

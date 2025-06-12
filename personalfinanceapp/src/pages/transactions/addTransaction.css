@@ -25,3 +25,15 @@
   position: relative;
   text-align: center;
 }
+
+.position-add-transaction-close-button{
+  display:flex;
+  flex-direction: row;
+  justify-content: right;
+}
+
+.position-checkboxes{
+ display: flex;
+ justify-content: center;
+ gap: 25px;
+}
