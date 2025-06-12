@@ -4,6 +4,7 @@ import { getAllCategories, getAllTransactionTableData } from "./getAPICalls";
 import FilterForm from "./filterForm";
 import AccountOrDebtForm from "./addAcountDebtForm";
 import ListOfAccounts from "./ListOfAccounts";
+import AddTransaction from "./addTransaction";
 import "./secondaryButton.css"
 import "./primaryButton.css"
 import "./transactions.css"
@@ -20,15 +21,17 @@ const Transactions = () => {
     getAllTransactionTableComponentData();
   }, []);
   
-    const[allCategoryData, setAllCategoryData] = useState([]);
-    useEffect(() => {
+  const[allCategoryData, setAllCategoryData] = useState([]);
+  useEffect(() => {
       const getAllCategoryDropDownData = async() => {
         const data = await getAllCategories();
         console.log("Fetched category data:", data);
         setAllCategoryData(data);
       }
       getAllCategoryDropDownData();
-    }, []);
+  }, []);
+
+  const[showAddTransactionDialog, setShowAddTransactionDialog] = useState(false);
 
   
   //#endregion
@@ -45,7 +48,10 @@ const Transactions = () => {
         </div>
         <div className="transaction-table">
           <div className="transaction-table-buttons">
-            <FilterForm categories={allCategoryData}/>
+            <FilterForm 
+               categories={allCategoryData}
+               onAddTransactionClick={() => setShowAddTransactionDialog(true)}
+            />
           </div>
            <TransactionTable transactions={allTransacitonData} />
         </div>
@@ -54,6 +60,7 @@ const Transactions = () => {
           <p>Choose how deposits are split up into categories</p>
           <p>Add categories</p>
         </div>
+          {showAddTransactionDialog && (<AddTransaction onClose={() => setShowAddTransactionDialog(false)} />)}
       </div>
     );
   };
