@@ -15,7 +15,7 @@ const AddDebit = ({categories}) => {
     };
 
     const addDebitEntry = () => {
-        setDebitEntries([...debitEntries, {date: "", decscription: "", category: "", amount: "", paymentMethod: "", pending: ""}]);
+        setDebitEntries([...debitEntries, {date: "", description: "", category: "", amount: "", paymentMethod: "", pending: ""}]);
     };
 
     const removeDebitEntry = (indexToRemove) => {
@@ -32,7 +32,8 @@ const AddDebit = ({categories}) => {
     return(
         <form onSubmit={handleDebitFormSubmit}>
             {debitEntries.map((debitEntry, index) =>(
-            <div className="debit-form-items" key={index}>
+            <div className="debit-form-container" key={index}>
+                <div className="debit-form-item"> 
                 {index === 0 && <label> Date </label>}
                 <input
                     type = "date"
@@ -40,14 +41,18 @@ const AddDebit = ({categories}) => {
                     value={debitEntry.date}
                     onChange={(e) => handleDebitEntryChange(index, "date", e.target.value)}
                 />
-                {index === 0 && <label> Description </label>}
-                <input
+                </div>
+                <div className="debit-form-item">
+                    {index === 0 && <label> Description </label>}
+                    <input
                     type = "text"
                     placeholder = "Enter Description"
-                    value={debitEntry.decscription}
+                    value={debitEntry.description}
                     onChange={(e) => handleDebitEntryChange(index, "description", e.target.value)}
                 />
-                 {index === 0 && <label> Category </label>}
+                </div>
+                <div className="debit-form-item">
+                      {index === 0 && <label> Category </label>}
                 <select
                     name="category"
                     value={debitEntry.category}
@@ -61,6 +66,8 @@ const AddDebit = ({categories}) => {
                         </option>
                     ))}
                 </select>
+                </div>
+                <div className="debit-form-item">
                 {index === 0 && <label> Amount </label>}
                  <input
                     type = "number"
@@ -70,7 +77,9 @@ const AddDebit = ({categories}) => {
                     min="0"
                     step="0.01"
                 />
-                {/* Need to change to drop down menu and add API call to get payment methods later*/}
+                </div>
+                <div className="debit-form-item">
+                 {/* Need to change to drop down menu and add API call to get payment methods later*/}
                  {index === 0 && <label> Payment Method </label>}
                  <input
                     type = "text"
@@ -78,18 +87,21 @@ const AddDebit = ({categories}) => {
                     value={debitEntry.paymentMethod}
                     onChange={(e) => handleDebitEntryChange(index, "paymentMethod", e.target.value)}
                 />
-                 {index === 0 && <label> Pending </label>}
-                 <input
+                </div>
+              <div className="debit-form-item">
+                   {index === 0 && <label> Pending </label>}
+                   <input
                     type = "checkbox"
                     value={debitEntry.pending}
                     onChange={(e) => handleDebitEntryChange(index, "pending", e.target.value)}
-                />
-                
+                />     
+              </div>
                 {debitEntries.length > 1 && (
                     <button type="button" onClick={() => removeDebitEntry(index)}>🗑️</button>
                 )}
             </div>
           ))}
+          
           <button type="button" onClick={addDebitEntry}>➕ Add Row</button>
           <button type="submit">Submit</button>
         </form>

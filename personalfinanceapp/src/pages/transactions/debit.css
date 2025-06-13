@@ -1,5 +1,20 @@
-.debit-form-items{
+.debit-form-container{
     display: flex;
     gap: 10px;
     align-items: center;
 }
+
+.debit-form-item select,
+.debit-form-item input{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.debit-form-item input[type="checkbox"]{
+    height: auto;
+    align-self: center;
+}
+
