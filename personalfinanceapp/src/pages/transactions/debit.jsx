@@ -96,13 +96,17 @@ const AddDebit = ({categories}) => {
                     onChange={(e) => handleDebitEntryChange(index, "pending", e.target.value)}
                 />     
               </div>
+              <div className="debit-form-item">
+                {index === 0 && <label className="placeholder">PH</label>}
                 {debitEntries.length > 1 && (
                     <button type="button" onClick={() => removeDebitEntry(index)}>🗑️</button>
                 )}
+              </div>   
             </div>
           ))}
           
-          <button type="button" onClick={addDebitEntry}>➕ Add Row</button>
+          <button type="button" onClick={addDebitEntry}>➕ Add Transaction</button>
+          <br></br>
           <button type="submit">Submit</button>
         </form>
     );
