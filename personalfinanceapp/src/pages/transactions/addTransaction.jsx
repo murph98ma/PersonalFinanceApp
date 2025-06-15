@@ -3,7 +3,7 @@ import AddDeposit from "./deposit";
 import AddDebit from "./debit";
 import "./addTransaction.css"
 
-const AddTransaction = ({onClose, categories}) => {
+const AddTransaction = ({onClose, categories, paymentMethods}) => {
     const [transactionTypeSelection, setTransactionTypeSelection] = useState(null);
     const handleTransactionTypeCheck = (type) => {
         setTransactionTypeSelection(prev => (prev === type ? null : type));
@@ -42,7 +42,7 @@ const AddTransaction = ({onClose, categories}) => {
                 )}
                 {transactionTypeSelection === 'Debit' && (
                     <div> 
-                        <AddDebit categories={categories}/>
+                        <AddDebit categories={categories} paymentMethods={paymentMethods}/>
                     </div>
                 )}
             </div>

@@ -104,6 +104,13 @@ app.get("/allCategories", (req, res) =>{
             categories:["Car", "Student", "Rent", "Groceries", "Utilities", "Entertainment" ]
         })
 });
+
+
+app.get("/allPaymentMethods", (req, res) => {
+    res.json({
+        paymentMethods:["NCACU", "Ally", "Chase Credit"]
+    })
+});
 //#endregion
 
 app.listen(port, () =>{

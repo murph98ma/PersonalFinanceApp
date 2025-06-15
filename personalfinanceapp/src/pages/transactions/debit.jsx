@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import "./debit.css"
+import "./secondaryButton.css"
 
-const AddDebit = ({categories}) => {
+const AddDebit = ({categories, paymentMethods}) => {
     const [debitEntries, setDebitEntries] = useState(
         [
             {date: "", decscription: "", category: "", amount: "", paymentMethod: "", pending: ""}
@@ -40,6 +41,7 @@ const AddDebit = ({categories}) => {
                     placeholder = "Enter Date"
                     value={debitEntry.date}
                     onChange={(e) => handleDebitEntryChange(index, "date", e.target.value)}
+                    required
                 />
                 </div>
                 <div className="debit-form-item">
@@ -49,6 +51,7 @@ const AddDebit = ({categories}) => {
                     placeholder = "Enter Description"
                     value={debitEntry.description}
                     onChange={(e) => handleDebitEntryChange(index, "description", e.target.value)}
+                    required
                 />
                 </div>
                 <div className="debit-form-item">
@@ -57,6 +60,7 @@ const AddDebit = ({categories}) => {
                     name="category"
                     value={debitEntry.category}
                     onChange={(e) => handleDebitEntryChange(index, "category", e.target.value)}
+                    required
                 >
                     <option value="">Select Category</option>
                     {categories?.length > 0 &&
@@ -76,17 +80,26 @@ const AddDebit = ({categories}) => {
                     onChange={(e) => handleDebitEntryChange(index, "amount", e.target.value)}
                     min="0"
                     step="0.01"
+                    required
                 />
                 </div>
                 <div className="debit-form-item">
-                 {/* Need to change to drop down menu and add API call to get payment methods later*/}
-                 {index === 0 && <label> Payment Method </label>}
-                 <input
-                    type = "text"
-                    placeholder = "Select Payment Method"
-                    value={debitEntry.paymentMethod}
-                    onChange={(e) => handleDebitEntryChange(index, "paymentMethod", e.target.value)}
-                />
+                    {index === 0 && <label> Payment Method </label>}
+                   <select
+                     name="paymentMethod"
+                     value={debitEntry.paymentMethod}
+                     onChange={(e) => handleDebitEntryChange(index, "paymentMethod", e.target.value)}
+                     required                   
+                   >
+                        <option value="">Select Payment Method</option>
+                        {paymentMethods?.length > 0 &&
+                            paymentMethods.map((cat, index) => (
+                                <option key={index} value={cat.toLowerCase()}>
+                                    {cat}
+                                </option>
+                            ))
+                        }
+                   </select>
                 </div>
               <div className="debit-form-item">
                    {index === 0 && <label> Pending </label>}
@@ -104,10 +117,11 @@ const AddDebit = ({categories}) => {
               </div>   
             </div>
           ))}
-          
-          <button type="button" onClick={addDebitEntry}>➕ Add Transaction</button>
+          <div className="add-row-button-position">
+            <button className="btn btn-secondary .btn-secondary:hover btn-secondary:active" type="button" onClick={addDebitEntry}>Add Row</button>
+          </div>
           <br></br>
-          <button type="submit">Submit</button>
+          <button className="btn primary-button button-spacing" type="submit">Submit</button>
         </form>
     );
 }
