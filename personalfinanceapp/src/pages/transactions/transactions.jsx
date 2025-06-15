@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import TransactionTable from "../SharedComponents/TransactionTable";
-import { getAllCategories, getAllTransactionTableData } from "./getAPICalls";
+import { getAllCategories, getAllPaymentMethods, getAllTransactionTableData } from "./getAPICalls";
 import FilterForm from "./filterForm";
 import AccountOrDebtForm from "./addAcountDebtForm";
 import ListOfAccounts from "./ListOfAccounts";
@@ -31,10 +31,19 @@ const Transactions = () => {
       getAllCategoryDropDownData();
   }, []);
 
-  const[showAddTransactionDialog, setShowAddTransactionDialog] = useState(false);
+  const[allPaymentMethodData, setAllPaymentMethodData] = useState([]);
+  useEffect(() => {
+    const getAllPaymentMethodData = async() => {
+      const data = await getAllPaymentMethods();
+      console.log("Fetched all payment method data: ", data);
+      setAllPaymentMethodData(data);
+    }
+    getAllPaymentMethodData();
+  }, []);
 
   
   //#endregion
+  const[showAddTransactionDialog, setShowAddTransactionDialog] = useState(false);
 
     return(
       <div className="transaction-grid-container">
@@ -60,7 +69,7 @@ const Transactions = () => {
           <p>Choose how deposits are split up into categories</p>
           <p>Add categories</p>
         </div>
-          {showAddTransactionDialog && (<AddTransaction onClose={() => setShowAddTransactionDialog(false)} />)}
+          {showAddTransactionDialog && (<AddTransaction onClose={() => setShowAddTransactionDialog(false)} categories={allCategoryData} paymentMethods={allPaymentMethodData} />)}
       </div>
     );
   };

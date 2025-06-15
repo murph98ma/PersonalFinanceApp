@@ -1,0 +1,50 @@
+.debit-form-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr 1fr 2fr 1fr auto;
+  gap: 0.5rem;
+  align-items: start;
+  margin-bottom: 0.5rem;
+}
+
+.debit-form-item {
+  display: flex;
+  flex-direction: column;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.debit-form-item input,
+.debit-form-item select {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.debit-form-item input[type="checkbox"] {
+  margin: 0 auto;
+  width: auto;
+}
+
+.debit-form-item label {
+  margin-bottom: 0.25rem;
+  font-weight: bold;
+}
+
+.placeholder{
+    visibility: hidden;
+}
+
+.add-row-button-position{
+ display: flex;
+ justify-content: center;
+}
+
+@media (max-width: 600px) {
+  .debit-form-container {
+    grid-template-columns: 1fr;
+  }
+
+  .debit-form-item {
+    width: 100%;
+  }
+}
