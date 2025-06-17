@@ -15,6 +15,7 @@
     margin-bottom: 0px;
     margin-top: 0px;
     padding-top: 20px;
+    font-size: 15px;
 }
 
 .form-divs-checkboxes{
@@ -39,8 +40,33 @@
     color: black;
     margin-bottom: 0px;
     padding-bottom: 0px;
+    text-decoration: underline;
+    font-weight: bold;
 }
 
 .header-adjustments{
     margin: 15px;
+}
+
+@media (min-height: 1000px){
+    .form-title-accounts{
+        font-size: 40px;
+    }
+
+    .form-divs-accounts{
+        font-size: 25px;
+    }
+
+    .addAccountDebt input[type="text"],
+    .addAccountDebt input[type="number"]{
+        height: 25px;
+        width: 60%;
+        font-size: 1.2rem;
+    }
+
+    .addAccountDebt input[type="checkbox"]{
+        transform: scale(1.5);
+        margin-right: 10px;
+    }
+
 }

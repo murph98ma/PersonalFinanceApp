@@ -44,7 +44,6 @@ const AccountOrDebtForm = ({}) =>{
         <form onSubmit={handleSubmit}> 
         <div className="form-divs-accounts">
         <h4 className="header-adjustments">Account Name</h4>
-        <label></label>
             <input
                 type="text"
                 name="startingAmount"
@@ -79,7 +78,6 @@ const AccountOrDebtForm = ({}) =>{
         </div>
         <div className="form-divs-accounts">
         <h4 className="header-adjustments">Starting Value</h4>
-        <label></label>
             <input
                 type="number"
                 name="startingAmount"

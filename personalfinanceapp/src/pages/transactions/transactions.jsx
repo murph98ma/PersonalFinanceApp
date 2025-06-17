@@ -59,6 +59,7 @@ const Transactions = () => {
           <div className="transaction-table-buttons">
             <FilterForm 
                categories={allCategoryData}
+               paymentMethods={allPaymentMethodData}
                onAddTransactionClick={() => setShowAddTransactionDialog(true)}
             />
           </div>
@@ -69,7 +70,10 @@ const Transactions = () => {
           <p>Choose how deposits are split up into categories</p>
           <p>Add categories</p>
         </div>
-          {showAddTransactionDialog && (<AddTransaction onClose={() => setShowAddTransactionDialog(false)} categories={allCategoryData} paymentMethods={allPaymentMethodData} />)}
+          {showAddTransactionDialog && (<AddTransaction onClose={() => setShowAddTransactionDialog(false)} 
+          categories={allCategoryData} 
+          paymentMethods={allPaymentMethodData} 
+          />)}
       </div>
     );
   };

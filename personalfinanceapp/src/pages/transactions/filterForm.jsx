@@ -1,11 +1,12 @@
 import React, {useState} from "react";
 import "./filterForm.css";
 
-const FilterForm = ({categories, onAddTransactionClick}) => {
+const FilterForm = ({categories, paymentMethods, onAddTransactionClick}) => {
     const [amount, setAmount] = useState("");
     const[fromDate, setFromDate] = useState("");
     const[toDate, setToDate] = useState("");
     const [category, setCategory] = useState("");
+    const [paymentMethod, setPaymentMethod] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -13,6 +14,7 @@ const FilterForm = ({categories, onAddTransactionClick}) => {
     }
 
     return(
+      <div className="filter-positioning">
         <form onSubmit={handleSubmit}>
             <div className="filter-selection">
             <div className="form-divs">
@@ -63,6 +65,22 @@ const FilterForm = ({categories, onAddTransactionClick}) => {
                 ))}
             </select>
             </div>
+            <div className="form-divs">
+            <label htmlFor="category">Payment</label>
+            <select
+                name="payment"
+                value={paymentMethod}
+                onChange={(e) => setPaymentMethod(e.target.value)}
+            >
+                <option value="">Select Category</option>
+                {paymentMethods?.length > 0 &&
+                    paymentMethods.map((cat, index) => (
+                    <option key={index} value={cat.toLowerCase()}>
+                      {cat}
+                    </option>
+                ))}
+            </select>
+            </div>
       <button className="btn btn-secondary button-spacing" type="submit">Submit</button>
       <button className="btn btn-secondary button-spacing">Edit Transaction</button>
       <button 
@@ -75,6 +93,7 @@ const FilterForm = ({categories, onAddTransactionClick}) => {
       
       </div>
     </form>
+    </div>
     );  
 }
 
