@@ -101,7 +101,15 @@ app.get("/allTransactionData", (req, res) =>{
 
 app.get("/allCategories", (req, res) =>{
         res.json({
-            categories:["Car", "Student", "Rent", "Groceries", "Utilities", "Entertainment" ]
+              categories:[
+                {title:"Car", bankAccout: "NCACU"}, 
+                {title: "Student", bankAccount: "NCACU"},
+                {title: "Rent", bankAccount: "NCACU"},
+                {title: "Groceries", bankAccount: "Ally"},
+                {title: "Utilities", bankAccount: "NCACU"},
+                {title: "Entertainment", bankAccount: "Ally"} 
+
+            ]
         })
 });
 

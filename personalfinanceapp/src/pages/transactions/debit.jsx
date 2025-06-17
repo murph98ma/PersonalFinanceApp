@@ -5,7 +5,7 @@ import "./secondaryButton.css"
 const AddDebit = ({categories, paymentMethods}) => {
     const [debitEntries, setDebitEntries] = useState(
         [
-            {date: "", decscription: "", category: "", amount: "", paymentMethod: "", pending: ""}
+            {date: "", description: "", category: "", amount: "", paymentMethod: "", pending: ""}
         ]
     );
 
@@ -27,7 +27,7 @@ const AddDebit = ({categories, paymentMethods}) => {
     const handleDebitFormSubmit = (e)=> {
         e.preventDefault();
         const validDebitEntries = debitEntries.filter(
-            (debitEntry) => debitEntry.date && debitEntry.decscription && debitEntry.category && debitEntry.amount && debitEntry.paymentMethod && debitEntry.pending
+            (debitEntry) => debitEntry.date && debitEntry.description && debitEntry.category && debitEntry.amount && debitEntry.paymentMethod && debitEntry.pending
         );
     }
     return(
@@ -65,8 +65,8 @@ const AddDebit = ({categories, paymentMethods}) => {
                     <option value="">Select Category</option>
                     {categories?.length > 0 &&
                         categories.map((cat, index) => (
-                        <option key={index} value={cat.toLowerCase()}>
-                            {cat}
+                        <option key={index} value={cat.title}>
+                            {cat.title}
                         </option>
                     ))}
                 </select>
