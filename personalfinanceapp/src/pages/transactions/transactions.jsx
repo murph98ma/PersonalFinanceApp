@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import TransactionTable from "../SharedComponents/TransactionTable";
-import { getAllCategories, getAllPaymentMethods, getAllTransactionTableData } from "./getAPICalls";
+import { getAllCategories, getAllPaymentMethods, getAllTransactionTableData, getAllBankAccounts } from "./getAPICalls";
 import FilterForm from "./filterForm";
 import AccountOrDebtForm from "./addAcountDebtForm";
 import ListOfAccounts from "./ListOfAccounts";
@@ -41,6 +41,15 @@ const Transactions = () => {
     getAllPaymentMethodData();
   }, []);
 
+  const[allBankAccountData, setAllBankAccountsData] = useState([]);
+  useEffect(() => {
+    const getAllBankAccountData = async() => {
+      const data = await getAllBankAccounts();
+      console.log("Fetched all bank account data: ", data);
+      setAllBankAccountsData(data);
+    }
+    getAllBankAccountData();
+  }, []);
   
   //#endregion
   const[showAddTransactionDialog, setShowAddTransactionDialog] = useState(false);
@@ -72,7 +81,8 @@ const Transactions = () => {
         </div>
           {showAddTransactionDialog && (<AddTransaction onClose={() => setShowAddTransactionDialog(false)} 
           categories={allCategoryData} 
-          paymentMethods={allPaymentMethodData} 
+          paymentMethods={allPaymentMethodData}
+          bankAccounts={allBankAccountData}
           />)}
       </div>
     );

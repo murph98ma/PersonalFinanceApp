@@ -102,7 +102,7 @@ app.get("/allTransactionData", (req, res) =>{
 app.get("/allCategories", (req, res) =>{
         res.json({
               categories:[
-                {title:"Car", bankAccout: "NCACU"}, 
+                {title:"Car", bankAccount: "NCACU"}, 
                 {title: "Student", bankAccount: "NCACU"},
                 {title: "Rent", bankAccount: "NCACU"},
                 {title: "Groceries", bankAccount: "Ally"},
@@ -117,6 +117,12 @@ app.get("/allCategories", (req, res) =>{
 app.get("/allPaymentMethods", (req, res) => {
     res.json({
         paymentMethods:["NCACU", "Ally", "Chase Credit"]
+    })
+});
+
+app.get("/allBankAccounts", (req, res) => {
+    res.json({
+        bankAccounts:["NCACU", "Ally"]
     })
 });
 //#endregion
