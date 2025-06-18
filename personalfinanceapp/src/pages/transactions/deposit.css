@@ -1,0 +1,38 @@
+.deposit-form-container{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem
+}
+
+.deposit-form-item{
+    display: flex;
+    flex-direction: column;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.deposit-form-item label {
+  margin-bottom: 0.25rem;
+  font-weight: bold;
+}
+
+.deposit-category-item{
+    display: flex;
+    flex-direction: row;
+     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    gap: 0.5rem;
+}
+
+.deposit-category-item label {
+  margin-bottom: 0.25rem;
+  font-weight: bold;
+}
+
+
+.category-display{
+    display: flex;
+    flex-direction: column;
+}
