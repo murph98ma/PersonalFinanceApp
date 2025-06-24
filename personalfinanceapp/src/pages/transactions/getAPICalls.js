@@ -25,13 +25,24 @@ export const getAllCategories = async () => {
 }
 //#endregion
 
-//#region 
+//#region Get Payment methods
 export const getAllPaymentMethods = async () => {
     try{
         const response = await axios.get(serverURL + "/allPaymentMethods");
         return response.data.paymentMethods || [];
     }catch(error){
         console.error("Error when fetching payment methods: ", error);
+    }
+}
+//#endregion
+
+//#region Get Bank Accounts
+export const getAllBankAccounts = async () => {
+    try{
+        const response = await axios.get(serverURL + "/allBankAccounts");
+        return response.data.bankAccounts || [];
+    }catch(error){
+        console.error("Error when retrieving bank accounts");
     }
 }
 //#endregion

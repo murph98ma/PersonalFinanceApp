@@ -59,8 +59,8 @@ const FilterForm = ({categories, paymentMethods, onAddTransactionClick}) => {
                 <option value="">Select Category</option>
                 {categories?.length > 0 &&
                     categories.map((cat, index) => (
-                    <option key={index} value={cat.toLowerCase()}>
-                      {cat}
+                    <option key={index} value={cat.title.toLowerCase()}>
+                      {cat.title}
                     </option>
                 ))}
             </select>
