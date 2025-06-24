@@ -107,7 +107,7 @@ app.get("/allCategories", (req, res) =>{
                 {title: "Rent", bankAccount: "NCACU"},
                 {title: "Groceries", bankAccount: "Ally"},
                 {title: "Utilities", bankAccount: "NCACU"},
-                {title: "Entertainment", bankAccount: "Ally"} 
+                {title: "Entertainment", bankAccount: "Ally"}
 
             ]
         })

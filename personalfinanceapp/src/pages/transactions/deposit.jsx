@@ -1,12 +1,14 @@
 import React, {useState} from "react";
 import { currencyFormat } from "../../utils/formatters";
+import {v4 as uuidv4} from 'uuid';
 import "./deposit.css";
+import "./secondaryButton.css"
 
 const AddDeposit = ({categories, bankAccounts}) => {
 
     const [depositEntries, setDepositEntries] = useState(
        [
-        {date: "", description:"", bankAccount: "", categoryAmounts: {}}
+        {id: uuidv4(), date: "", description:"", bankAccount: "", categoryAmounts: {}}
        ] 
     )
 
@@ -30,7 +32,7 @@ const AddDeposit = ({categories, bankAccounts}) => {
     }
 
     const addDepositEntry = () => {
-        setDepositEntries([...depositEntries, {date: "", description:"", bankAccount: "", categoryAmounts: {}}])
+        setDepositEntries([...depositEntries, {id: uuidv4(), date: "", description:"", bankAccount: "", categoryAmounts: {}}])
     }
 
     const removeDepositEntry = (indexToRemove) => {
@@ -38,7 +40,7 @@ const AddDeposit = ({categories, bankAccounts}) => {
         setDepositEntries(updated);
     }
 
-    const handleDebitFormSubmit=(e)=> {
+    const handleDepositFormSubmit=(e)=> {
         e.preventDefault();
         const validDepositEntries = depositEntries.filter(
             (depositEntry) => depositEntry.date && depositEntry.description && depositEntry.bankAccount && depositEntry.categoryAmounts
@@ -46,12 +48,12 @@ const AddDeposit = ({categories, bankAccounts}) => {
     }
 
     return(
-        <form>
+        <form onSubmit={handleDepositFormSubmit}>
             {depositEntries.map((depositEntry, index) => (
-              <div className="deposit-form-container">
+              <div className="deposit-form-container" key={depositEntry.id}>
                 <div className="deposit-form-item">
                     {index === 0 && <label>Date</label>}
-                    {index >= 1 && <label>PH</label>}
+                    {index >= 1 && <label className="place-holder">PH</label>}
                     <input 
                         type="date"
                         placeholder="Enter Date"
@@ -62,7 +64,7 @@ const AddDeposit = ({categories, bankAccounts}) => {
                 </div>
                 <div className="deposit-form-item">
                     {index === 0 && <label>Description</label>}
-                    {index >= 1 && <label>PH</label>}
+                    {index >= 1 && <label className="place-holder">PH</label>}
                     <input 
                         type="text"
                         placeholder="Enter Description"
@@ -73,7 +75,7 @@ const AddDeposit = ({categories, bankAccounts}) => {
                 </div>
                 <div className="deposit-form-item">
                     {index === 0 && <label>Bank Account</label>}
-                    {index >= 1 && <label>PH</label>}
+                    {index >= 1 && <label className="place-holder">PH</label>}
                     <select
                         name="bankAccount"
                         value={depositEntry.bankAccount}
@@ -110,21 +112,22 @@ const AddDeposit = ({categories, bankAccounts}) => {
                     }
                 </div>
                 <div className="deposit-form-item">
-                    {index === 0 && <label>Total</label>}
-                    {index >= 1 && <label>PH</label>}
+                    <label>Total</label>
                     <div>{currencyFormat.format(getTotalForCategoryEntries(depositEntry).toFixed(2))}</div>
                 </div>
                 <div className="deposit-form-item">
-                    {index >= 0 && <label>PH</label>}
+                    {index >= 0 && <label className="place-holder">PH</label>}
                     {depositEntries.length > 1 && (
                         <button type="button" onClick={() => removeDepositEntry(index)}>🗑️</button>
                     )}
                 </div>
               </div>
             ))}
-            <div>
-                <button type="button" onClick={addDepositEntry}>Add Row</button>
+            <div className="add-row-button-position">
+                <button className="btn btn-secondary .btn-secondary:hover btn-secondary:active" type="button" onClick={addDepositEntry}>Add Row</button>
             </div>
+            <br></br>
+          <button className="btn primary-button button-spacing" type="submit">Submit</button>
         </form>
     );
 }

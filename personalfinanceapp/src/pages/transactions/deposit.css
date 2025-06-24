@@ -18,12 +18,9 @@
 }
 
 .deposit-category-item{
-    display: flex;
-    flex-direction: row;
-     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    gap: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(50px, auto)); 
+  gap: 0.5rem;
 }
 
 .deposit-category-item label {
@@ -35,4 +32,36 @@
 .category-display{
     display: flex;
     flex-direction: column;
+    flex: 1;
+}
+
+.category-display input{
+  width: 100%;
+}
+
+.place-holder{
+  visibility: hidden;
+}
+
+.add-row-button-position{
+ display: flex;
+ justify-content: center;
+ padding-top: 10px;
+}
+
+
+@media (max-width: 600px) {
+  .deposit-form-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .deposit-form-item {
+    width: 100%;
+  }
+
+  .deposit-category-item{
+  grid-template-columns: 1fr; 
+  }
+
 }
