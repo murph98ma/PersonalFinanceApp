@@ -5,6 +5,7 @@ import FilterForm from "./filterForm";
 import AccountOrDebtForm from "./addAcountDebtForm";
 import ListOfAccounts from "./ListOfAccounts";
 import AddTransaction from "./addTransaction";
+import AddCategory from "./addCategory";
 import "./secondaryButton.css"
 import "./primaryButton.css"
 import "./transactions.css"
@@ -75,8 +76,7 @@ const Transactions = () => {
            <TransactionTable transactions={allTransacitonData} />
         </div>
         <div className="transaction-grid-item">
-          <h2>Deposit Split/Add Category</h2>
-          <p>Choose how deposits are split up into categories</p>
+          <AddCategory />
           <p>Add categories</p>
         </div>
           {showAddTransactionDialog && (<AddTransaction onClose={() => setShowAddTransactionDialog(false)} 
