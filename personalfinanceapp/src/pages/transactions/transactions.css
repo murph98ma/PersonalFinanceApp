@@ -1,7 +1,7 @@
 .transaction-grid-container{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(auto-fit, 2, 1fr);
+    grid-template-rows: repeat( 2, 1fr);
     gap: 10px;
     height: 98vh;
     width: 100%;
@@ -57,7 +57,7 @@
     border-width: 2px;
     border-radius: 10px;
     width: 45%;
-    height: 90%;
+    height: 97%;
 }
 
 .center-transactions-view{
