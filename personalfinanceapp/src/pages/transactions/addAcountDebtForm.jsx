@@ -23,6 +23,8 @@ const AccountOrDebtForm = ({}) =>{
             },
         }));
     };
+
+    //Need to change handle submit method to submit all the values in the form.
     const handleSubmit = (e) =>{
         e.preventDefault();
 
@@ -46,7 +48,7 @@ const AccountOrDebtForm = ({}) =>{
         <h4 className="header-adjustments">Account Name</h4>
             <input
                 type="text"
-                name="startingAmount"
+                name="accountName"
                 placeholder="Enter Account Name"
                 required
             />
