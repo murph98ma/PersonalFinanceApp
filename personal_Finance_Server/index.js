@@ -53,7 +53,8 @@ app.get("/bankAccountTotalData", (req, res) => {
     res.json({
         accounts:[
             { id: 1, name: "NCACU", balance: 20000 },
-            { id: 2, name: "Ally", balance: 10000 },    
+            { id: 2, name: "Ally", balance: 10000 },
+            { id: 3, name: "Enemy", balance: 10000 },      
         ]
     });
 });
@@ -63,6 +64,7 @@ app.get("/debtTotalData", (req, res) =>{
         accounts:[
             {id: 1, name: "Toyota Tacoma", balance: 16000},
             {id: 2, name: "Student Loans", balance: 18000},
+            {id: 3, name: "Cabin", balance: 18000},
         ]
     })
 })
