@@ -50,7 +50,7 @@ const Transactions = () => {
     }
     getAllBankAccountData();
   }, []);
-  
+
   //#endregion
   const[showAddTransactionDialog, setShowAddTransactionDialog] = useState(false);
 

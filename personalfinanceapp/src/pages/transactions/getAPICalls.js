@@ -36,7 +36,7 @@ export const getAllPaymentMethods = async () => {
 }
 //#endregion
 
-//#region Get Bank Accounts
+//#region Get Bank Accounts for category filters and adding transactions
 export const getAllBankAccounts = async () => {
     try{
         const response = await axios.get(serverURL + "/allBankAccounts");
@@ -46,4 +46,17 @@ export const getAllBankAccounts = async () => {
     }
 }
 //#endregion
+
+//#region Bank account totals get route
+export const getBankAccountTotalData = async () => {
+    try{
+        const resposne =  await axios.get(serverURL + "/bankAccountTotalData");
+        return resposne.data.accounts || [];
+    }catch(error){
+        console.error("Error when loading bank account total data: ", error);
+        return [];
+    }
+}
+//#endregion
+
 
