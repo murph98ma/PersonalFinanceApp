@@ -26,3 +26,14 @@
 .leftSide{
     border-right: 2px solid black;
 }
+
+.sectionContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.sectionHeaders{
+    text-align: center;
+}

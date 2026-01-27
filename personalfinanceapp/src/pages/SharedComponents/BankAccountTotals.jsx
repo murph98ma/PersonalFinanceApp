@@ -11,7 +11,7 @@ const BankAccountTotals = ({ accounts, pending, label }) => {
     return <div>Loading Bank Account Data ...</div>
   }
 
-  if (label === "Bank Accounts"){
+  if (label === "Bank Accounts" || label === "Debt Accounts"){
     return(
      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         {accounts.map((account) => (

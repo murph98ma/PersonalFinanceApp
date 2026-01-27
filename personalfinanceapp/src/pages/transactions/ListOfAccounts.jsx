@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import "./ListOfAccounts.css"
 import "../SharedComponents/BankAccountTotals"
-import {getBankAccountTotalData} from "./getAPICalls"
+import {getBankAccountTotalData, getDebtTotalData} from "./getAPICalls"
 import BankAccountTotals from "../SharedComponents/BankAccountTotals";
 
 const ListOfAccounts = ({}) =>{
@@ -14,21 +14,32 @@ const ListOfAccounts = ({}) =>{
        getBankAccountComponentTotalData();
      }, []);
 
+     const[debtData, setDebts] = useState([]);
+     useEffect(() => {
+        const getDebtTotalComponentData = async () => {
+            const data = await getDebtTotalData();
+            setDebts(data);
+        };
+        getDebtTotalComponentData();
+     }, []);
+
     return(
         <div className="mainDivListOfAccounts">
             <h3 className="ListOfAccountsHeader">Accounts</h3>
 
             <div className="ListOfAccountsContent">
                 <div className="leftSide">
-                    <div>
-                        <h5>Bank Accounts</h5>
+                    <div className="sectionContent">
+                        <h5 className="sectionHeaders">Bank Accounts</h5>
                         <BankAccountTotals accounts={accountData} label="Bank Accounts"/>
                     </div>
                 </div> 
-           
-                <div className="rightSide">
-                 <h5>Debts</h5>
-                </div> 
+               <div className="rightSide">
+                    <div className="sectionContent">
+                        <h5 className="sectionHeaders">Debts</h5>
+                        <BankAccountTotals accounts ={debtData} label="Debt Accounts"/>
+                    </div> 
+                </div>
              </div>
         </div>
     );

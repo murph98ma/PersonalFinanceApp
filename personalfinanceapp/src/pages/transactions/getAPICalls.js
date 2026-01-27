@@ -59,4 +59,14 @@ export const getBankAccountTotalData = async () => {
 }
 //#endregion
 
-
+//#region 
+export const getDebtTotalData = async () => {
+    try{
+        const resposne = await axios.get(serverURL + "/debtTotalData");
+        return resposne.data.accounts || [];
+    }catch(error){
+        console.error("Error when loading debt data")
+        return;
+    }
+}
+//#endregion
