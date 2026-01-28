@@ -46,7 +46,7 @@ const AccountOrDebtForm = ({}) =>{
         <h4 className="header-adjustments">Account Name</h4>
             <input
                 type="text"
-                name="startingAmount"
+                name="accountName"
                 placeholder="Enter Account Name"
                 required
             />
