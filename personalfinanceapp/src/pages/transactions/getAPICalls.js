@@ -36,13 +36,37 @@ export const getAllPaymentMethods = async () => {
 }
 //#endregion
 
-//#region Get Bank Accounts
+//#region Get Bank Accounts for category filters and adding transactions
 export const getAllBankAccounts = async () => {
     try{
         const response = await axios.get(serverURL + "/allBankAccounts");
         return response.data.bankAccounts || [];
     }catch(error){
         console.error("Error when retrieving bank accounts");
+    }
+}
+//#endregion
+
+//#region Bank account totals get route
+export const getBankAccountTotalData = async () => {
+    try{
+        const resposne =  await axios.get(serverURL + "/bankAccountTotalData");
+        return resposne.data.accounts || [];
+    }catch(error){
+        console.error("Error when loading bank account total data: ", error);
+        return [];
+    }
+}
+//#endregion
+
+//#region 
+export const getDebtTotalData = async () => {
+    try{
+        const resposne = await axios.get(serverURL + "/debtTotalData");
+        return resposne.data.accounts || [];
+    }catch(error){
+        console.error("Error when loading debt data")
+        return;
     }
 }
 //#endregion

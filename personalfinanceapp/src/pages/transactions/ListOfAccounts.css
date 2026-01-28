@@ -1,0 +1,39 @@
+.mainDivListOfAccounts{
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.ListOfAccountsHeader{
+    text-align: center;
+    padding: 16px 0;
+    border-bottom: 2px solid black;
+    margin: 0;
+}
+
+.ListOfAccountsContent{
+    flex: 1;
+    display: flex;
+}
+
+.leftSide, .rightSide{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.leftSide{
+    border-right: 2px solid black;
+}
+
+.sectionContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.sectionHeaders{
+    text-align: center;
+}

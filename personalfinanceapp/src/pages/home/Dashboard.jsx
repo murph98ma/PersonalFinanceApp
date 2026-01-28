@@ -3,7 +3,7 @@ import GrowthGraph from "./GrowthGraph";
 import "./Dashboard.css";
 import TransactionTable from "../SharedComponents/TransactionTable";
 import DatePicker from "./DateSelection";
-import BankAccountTotals from "./BankAccountTotals";
+import BankAccountTotals from "../SharedComponents/BankAccountTotals";
 import { Button } from "@mui/material";
 import CategoryTotalList from "./CategoryTotalList";
 import { getGrowthChartData, getTransactionTableData, getCategoryTotalData, getBankAccountTotalData, getDebtTotalData, getPendingChargesData } from "./getAPICalls";
