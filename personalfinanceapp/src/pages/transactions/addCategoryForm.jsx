@@ -1,10 +1,10 @@
 import React, {useState} from "react";
 import "./addCategoryForm.css"
 
-const AddCategoryForm = ({}) => {
+const AddCategoryForm = ({bankAccounts}) => {
     const handleSubmit = (e) =>{
         e.preventDefault();
-
+        
     }
     return(
         <div>
@@ -12,7 +12,7 @@ const AddCategoryForm = ({}) => {
           <div>
              <form onSubmit={handleSubmit}>
                 <div>
-                    <h4>Cateogry Name</h4>
+                    <label htmlFor="categoryName">Category Name</label>
                     <input 
                         type="text"
                         name="categoryName"
@@ -20,10 +20,27 @@ const AddCategoryForm = ({}) => {
                         required
                     />
                 </div>
+                <div>
+                    <label>Bank Account</label>
+                    <select
+                        name="bankAccount"
+                        required
+                    >
+                    <option value="">Select Bank Account</option>
+                    {bankAccounts?.length > 0 && 
+                        bankAccounts.map((cat,index) => (
+                            <option key={index} value={cat}>
+                                {cat}
+                            </option>
+                        ))
+                    }
+                    </select>
+                </div>
+                <button className="btn primary-button button-spacing" type="submit">Submit</button>
              </form>
           </div>
         </div>
-    )
+    );
 }
 
 

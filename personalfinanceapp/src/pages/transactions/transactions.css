@@ -44,12 +44,15 @@
     margin:5px;
 }
 
+/* Need to change the name to be more univseral */
 .add-account-debt{
     display: flex;
     flex-direction: row;
     gap: 20px;
     align-items: stretch;
 }
+
+/*Need to change the name to be more univseral*/
 .add-account-debt-item{
     display: flex;
     flex-direction: column;

@@ -75,8 +75,13 @@ const Transactions = () => {
           </div>
            <TransactionTable transactions={allTransacitonData} />
         </div>
-        <div className="transaction-grid-item">
-          <AddCategoryForm />
+        <div className="transaction-grid-item add-account-debt">
+          <div className="add-account-debt-item">
+               <AddCategoryForm bankAccounts={allBankAccountData}/>
+          </div>
+          <div className="add-account-debt-item">
+              
+          </div>
         </div>
           {showAddTransactionDialog && (<AddTransaction onClose={() => setShowAddTransactionDialog(false)} 
           categories={allCategoryData} 
