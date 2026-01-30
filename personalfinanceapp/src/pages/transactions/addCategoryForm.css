@@ -1,0 +1,33 @@
+.addCategory{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+.header-adjustments{
+    margin: 15px;
+}
+
+.form-title-categories{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.form-div-categories{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px;
+    padding: 1px;
+    color: black;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding-top: 20px;
+    font-size: 15px;
+}

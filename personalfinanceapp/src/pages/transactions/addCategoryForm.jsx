@@ -8,11 +8,11 @@ const AddCategoryForm = ({bankAccounts}) => {
     }
     return(
         <div>
-          <h3>Add Category</h3>
-          <div>
+          <h3 className="form-title-categories">Add Category</h3>
+          <div className="addCategory">
              <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="categoryName">Category Name</label>
+                <div className="form-div-categories">
+                    <h4 className="header-adjustments">Category Name</h4>
                     <input 
                         type="text"
                         name="categoryName"
@@ -20,8 +20,8 @@ const AddCategoryForm = ({bankAccounts}) => {
                         required
                     />
                 </div>
-                <div>
-                    <label>Bank Account</label>
+                <div className="form-div-categories">
+                    <h4 className="header-adjustments">Bank Account</h4>
                     <select
                         name="bankAccount"
                         required
@@ -36,7 +36,9 @@ const AddCategoryForm = ({bankAccounts}) => {
                     }
                     </select>
                 </div>
-                <button className="btn primary-button button-spacing" type="submit">Submit</button>
+                <div className="form-div-categories">
+                    <button className="btn primary-button button-spacing" type="submit">Submit</button>
+                </div>
              </form>
           </div>
         </div>
