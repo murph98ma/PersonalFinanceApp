@@ -45,6 +45,7 @@ const AddDeposit = ({categories, bankAccounts}) => {
         const validDepositEntries = depositEntries.filter(
             (depositEntry) => depositEntry.date && depositEntry.description && depositEntry.bankAccount && depositEntry.categoryAmounts
         );
+        console.log(depositEntries)
     }
 
     return(

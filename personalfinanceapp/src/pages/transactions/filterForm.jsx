@@ -1,16 +1,29 @@
-import React, {useState} from "react";
+import React, {use, useState} from "react";
 import "./filterForm.css";
 
 const FilterForm = ({categories, paymentMethods, onAddTransactionClick}) => {
-    const [amount, setAmount] = useState("");
-    const[fromDate, setFromDate] = useState("");
-    const[toDate, setToDate] = useState("");
-    const [category, setCategory] = useState("");
-    const [paymentMethod, setPaymentMethod] = useState("");
+  
+    const[formData, setFormData] = useState({
+        amount: "",
+        fromDate: "",
+        toDate: "",
+        category: "",
+        paymentMethod: "",
+    })
+
+    const handleChange = (e) =>{
+        const {name, value, type} = e.target;
+
+        setFormData((prev) => ({
+            ...prev,
+            [name] : type === "number" ? Number(value) : value,
+        }));
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Filter form submitted", {amount, category});
+        console.log("Filter form submitted");
+        console.log(formData);
     }
 
     return(
@@ -23,10 +36,11 @@ const FilterForm = ({categories, paymentMethods, onAddTransactionClick}) => {
                 type="number"
                 name="amount"
                 placeholder="Enter Amount"
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
+                value={formData.amount}
+                onChange={handleChange}
                 min="0"
                 step="0.01"
+
             />
             </div>
             <div className="form-divs">
@@ -35,8 +49,8 @@ const FilterForm = ({categories, paymentMethods, onAddTransactionClick}) => {
                 type="date"
                 name="fromDate"
                 placeholder="Enter Date From"
-                value={fromDate}
-                onChange={(e) => setFromDate(e.target.value)}
+                value={formData.fromDate}
+                onChange={handleChange}
             />
             </div>
             <div className="form-divs">
@@ -45,16 +59,16 @@ const FilterForm = ({categories, paymentMethods, onAddTransactionClick}) => {
                 type="date"
                 name="toDate"
                 placeholder="Enter Date To"
-                value={toDate}
-                onChange={(e) => setToDate(e.target.value)}
+                value={formData.toDate}
+                onChange={handleChange}
             />
             </div>
             <div className="form-divs">
             <label htmlFor="category">Category</label>
             <select
                 name="category"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
+                value={formData.category}
+                onChange={handleChange}
             >
                 <option value="">Select Category</option>
                 {categories?.length > 0 &&
@@ -66,13 +80,13 @@ const FilterForm = ({categories, paymentMethods, onAddTransactionClick}) => {
             </select>
             </div>
             <div className="form-divs">
-            <label htmlFor="category">Payment</label>
+            <label htmlFor="payment">Payment</label>
             <select
-                name="payment"
-                value={paymentMethod}
-                onChange={(e) => setPaymentMethod(e.target.value)}
+                name="paymentMethod"
+                value={formData.paymentMethod}
+                onChange={handleChange}
             >
-                <option value="">Select Category</option>
+                <option value="">Select Payment Method</option>
                 {paymentMethods?.length > 0 &&
                     paymentMethods.map((cat, index) => (
                     <option key={index} value={cat.toLowerCase()}>

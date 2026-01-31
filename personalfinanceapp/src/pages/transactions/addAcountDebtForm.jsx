@@ -13,6 +13,15 @@ const AccountOrDebtForm = ({}) =>{
         },
     });
 
+    const handleChange = (e) => {
+        const {name, value, type} = e.target;
+
+        setFormData((prev) => ({
+            ...prev,
+            [name] : type === "number" ? Number(value): value,
+        }));
+    }
+
     const handleCheckboxChange = (e) =>{
         const{id, checked} = e.target;
         setFormData((prev) => ({
@@ -48,6 +57,8 @@ const AccountOrDebtForm = ({}) =>{
                 type="text"
                 name="accountName"
                 placeholder="Enter Account Name"
+                value={formData.accountName}
+                onChange={handleChange}
                 required
             />
         </div>
@@ -82,6 +93,8 @@ const AccountOrDebtForm = ({}) =>{
                 type="number"
                 name="startingAmount"
                 placeholder="Enter Starting Balance"
+                value={formData.startingAmount}
+                onChange={handleChange}
                 required
             />
         <br />
