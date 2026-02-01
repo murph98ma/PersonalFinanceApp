@@ -44,6 +44,14 @@ const AccountOrDebtForm = ({}) =>{
 
         console.log("Add Account Or Debt Form Submitted!");
         console.log(formData);
+        setFormData({
+            accountName: "",
+            startingAmount: "",
+            accountType:{
+                bank: false,
+                debt: false,
+        },
+        })
     }
 
     return(

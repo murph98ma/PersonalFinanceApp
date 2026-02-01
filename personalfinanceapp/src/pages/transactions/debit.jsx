@@ -30,6 +30,14 @@ const AddDebit = ({categories, paymentMethods}) => {
             (debitEntry) => debitEntry.date && debitEntry.description && debitEntry.category && debitEntry.amount && debitEntry.paymentMethod && debitEntry.pending
         );
         console.log(debitEntries);
+        setDebitEntries([{
+            date: "", 
+            description: "", 
+            category: "", 
+            amount: "", 
+            paymentMethod: "", 
+            pending: false
+        }]);
     }
     return(
         <form onSubmit={handleDebitFormSubmit}>
@@ -106,7 +114,7 @@ const AddDebit = ({categories, paymentMethods}) => {
                    {index === 0 && <label> Pending </label>}
                    <input
                     type = "checkbox"
-                    value={debitEntry.pending}
+                    checked={debitEntry.pending}
                     onChange={(e) => handleDebitEntryChange(index, "pending", e.target.checked)}
                 />     
               </div>
