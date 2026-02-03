@@ -16,14 +16,39 @@ const AddCategoryForm = ({bankAccounts}) => {
         }));
     }
     
-    const handleSubmit = (e) =>{
+    const handleSubmit = async (e) =>{
         e.preventDefault(); 
-        console.log("Add category form submitted!");
-        console.log(formData);
-        setFormData({
-            categoryName: "",
-            bankAccount: "",
-        })
+
+        const payload = {
+            categoryName: formData.categoryName,
+            bankAccount: formData.bankAccount,
+        };
+
+        try{
+            const repsonse = await fetch("http://localhost:5000/categories", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(payload),
+            });
+
+            if(!repsonse.ok){
+                throw new Error("Failed to add category");
+            }
+
+            const data = await repsonse.json();
+            console.log("Category saved: ", data);
+
+            setFormData({
+                categoryName: "",
+                bankAccount: "",
+            });
+
+
+        }catch(error){
+            console.log("Error submitting category:", error);
+        }
     }
     return(
         <div>

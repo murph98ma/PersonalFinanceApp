@@ -4,6 +4,7 @@ import cors from "cors";
 const app = express();
 const port = 5000;
 app.use(cors());
+app.use(express.json());
 
 //#region dashboard page api calls
 app.get("/growthTable", (req, res) => {
@@ -78,7 +79,7 @@ app.get("/pendingChargesData", (req, res) => {
 })
 //#endregion
 
-//#region transactions page api calls
+//#region transactions page get api calls
 app.get("/allTransactionData", (req, res) =>{
     res.json({
         transactions: [
@@ -127,6 +128,55 @@ app.get("/allBankAccounts", (req, res) => {
         bankAccounts:["NCACU", "Ally"]
     })
 });
+//#endregion
+
+//#region transactions post API calls
+app.post("/categories", (req, res) =>{
+
+    const {categoryName, bankAccount} = req.body;
+
+    console.log("Received new Category: ", req.body);
+
+    if(!categoryName || !bankAccount){
+        return res.status(400).json({ message: "Missing Fields"});
+    }
+
+    const newCategory = {
+        title: categoryName,
+        bankAccount
+    }
+
+    res.status(201).json({
+        message: "Category created successfully",
+        category: newCategory,
+    });
+
+});
+
+
+app.post("/accountOrDebt", (req, res) =>{
+    
+    const {accountName, startingAmount, accountType } = req.body;
+    console.log("Received new Bank Account or Debt", req.body);
+
+    if(!accountName || !accountType || !startingAmount){
+        return res.status(400).json({message: "Missing Fields"});
+    }
+
+    const newAccountOrDebt = {
+        id: 4,
+        accountName,
+        startingAmount,
+        accountType,
+        createdAt: new Date().toISOString(),   
+    }
+
+    res.status(201).json({
+        message: "Bank account or Debt account created successfully",
+        account: newAccountOrDebt,
+    });
+});
+
 //#endregion
 
 app.listen(port, () =>{

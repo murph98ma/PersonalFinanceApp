@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import "./addAccountDebtForm.css"
+import { accordionActionsClasses } from "@mui/material";
 
 
 const AccountOrDebtForm = ({}) =>{
@@ -32,26 +33,49 @@ const AccountOrDebtForm = ({}) =>{
             },
         }));
     };
-    const handleSubmit = (e) =>{
+    const handleSubmit = async (e) =>{
         e.preventDefault();
 
-        const{bank, debt} = formData.accountType;
-
+        const { bank, debt } = formData.accountType;
         if((bank && debt) || (!bank && !debt)){
             alert("Please select at least one account type: BANK OR DEBT");
             return;
         }
 
-        console.log("Add Account Or Debt Form Submitted!");
-        console.log(formData);
-        setFormData({
-            accountName: "",
-            startingAmount: "",
-            accountType:{
-                bank: false,
-                debt: false,
-        },
-        })
+        const payload = {
+            accountName: formData.accountName,
+            startingAmount: formData.startingAmount,
+            accountType: bank ? "BANK" : "DEBT",
+        };
+
+        try{
+            const response = await fetch("http://localhost:5000/accountOrDebt", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(payload),
+            });
+
+            if(!response.ok){
+                throw new Error("Failed to add account");
+            }
+
+            const data = await response.json();
+            console.log("Account saved: ", data);
+
+            setFormData({
+                accountName: "",
+                startingAmount: "",
+                accountType: {
+                    bank: false,
+                    debt: false,
+                }
+            });
+
+        }catch(error){
+            console.log("Error submitting the new account: ", error);
+        }
     }
 
     return(
