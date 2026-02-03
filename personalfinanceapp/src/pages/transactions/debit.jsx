@@ -5,7 +5,7 @@ import "./secondaryButton.css"
 const AddDebit = ({categories, paymentMethods}) => {
     const [debitEntries, setDebitEntries] = useState(
         [
-            {date: "", description: "", category: "", amount: "", paymentMethod: "", pending: ""}
+            {date: "", description: "", category: "", amount: "", paymentMethod: "", pending: false}
         ]
     );
 
@@ -16,7 +16,7 @@ const AddDebit = ({categories, paymentMethods}) => {
     };
 
     const addDebitEntry = () => {
-        setDebitEntries([...debitEntries, {date: "", description: "", category: "", amount: "", paymentMethod: "", pending: ""}]);
+        setDebitEntries([...debitEntries, {date: "", description: "", category: "", amount: "", paymentMethod: "", pending: false}]);
     };
 
     const removeDebitEntry = (indexToRemove) => {
@@ -29,6 +29,15 @@ const AddDebit = ({categories, paymentMethods}) => {
         const validDebitEntries = debitEntries.filter(
             (debitEntry) => debitEntry.date && debitEntry.description && debitEntry.category && debitEntry.amount && debitEntry.paymentMethod && debitEntry.pending
         );
+        console.log(debitEntries);
+        setDebitEntries([{
+            date: "", 
+            description: "", 
+            category: "", 
+            amount: "", 
+            paymentMethod: "", 
+            pending: false
+        }]);
     }
     return(
         <form onSubmit={handleDebitFormSubmit}>
@@ -105,8 +114,8 @@ const AddDebit = ({categories, paymentMethods}) => {
                    {index === 0 && <label> Pending </label>}
                    <input
                     type = "checkbox"
-                    value={debitEntry.pending}
-                    onChange={(e) => handleDebitEntryChange(index, "pending", e.target.value)}
+                    checked={debitEntry.pending}
+                    onChange={(e) => handleDebitEntryChange(index, "pending", e.target.checked)}
                 />     
               </div>
               <div className="debit-form-item">

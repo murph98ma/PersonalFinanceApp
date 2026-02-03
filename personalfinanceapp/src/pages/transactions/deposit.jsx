@@ -16,13 +16,13 @@ const AddDeposit = ({categories, bankAccounts}) => {
         const updated = [...depositEntries];
         updated[entryIndex].categoryAmounts = {
             ...updated[entryIndex].categoryAmounts,
-            [categoryTitle]: parseFloat(value) || 0
+            [categoryTitle]: value === ""?"" : parseFloat(value),
         };
         setDepositEntries(updated);
     }
 
     const getTotalForCategoryEntries = (entry) => {
-        return Object.values(entry.categoryAmounts || {}).reduce((sum, val) => sum + val, 0);
+        return Object.values(entry.categoryAmounts || {}).reduce((sum, val) => sum + (Number(val)) || 0 , 0);
     }
 
     const handleDepositEntryChange = (index, field, value)=> {
@@ -44,7 +44,17 @@ const AddDeposit = ({categories, bankAccounts}) => {
         e.preventDefault();
         const validDepositEntries = depositEntries.filter(
             (depositEntry) => depositEntry.date && depositEntry.description && depositEntry.bankAccount && depositEntry.categoryAmounts
+            && Object.keys(depositEntry.categoryAmounts).length > 0
         );
+        console.log(depositEntries)
+             setDepositEntries([{
+                 id: uuidv4(), 
+                 date: "", 
+                 description:"", 
+                 bankAccount: "", 
+                 categoryAmounts: {},
+             }
+            ]);
     }
 
     return(
@@ -104,7 +114,7 @@ const AddDeposit = ({categories, bankAccounts}) => {
                                 placeholder="Enter Amount"
                                 min="0"
                                 step="0.01"
-                                value={depositEntry.categoryAmounts?.[cat.title] || ""}
+                                value={depositEntry.categoryAmounts?.[cat.title] ?? ""}
                                 onChange={(e) => handleCategoryAmountChange(index, cat.title, e.target.value)}
                             />
                            </div>
