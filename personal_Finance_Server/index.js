@@ -177,6 +177,32 @@ app.post("/accountOrDebt", (req, res) =>{
     });
 });
 
+app.post("/deposit", (req, res) => {
+    const deposits = req.body;
+    console.log("Received a new deposit", req.body);
+
+    if(!Array.isArray(deposits) || deposits.length <= 0){
+        return res.status(400).json({message: "Missing Data"});
+    }
+
+
+    for(const d of deposits){
+        const {id, date, description, bankAccount, categoryAmounts} = d;
+
+        if(!date || !description || !bankAccount || !categoryAmounts){
+            return res.status(400).json({message: "Invalid data"});
+        }
+    }
+
+    console.log("Received deposits", deposits);
+
+    res.status(201).json({
+        message: "Deposit entered successfully!",
+        deposits
+
+    })
+})
+
 //#endregion
 
 app.listen(port, () =>{
