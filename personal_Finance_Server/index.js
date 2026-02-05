@@ -154,6 +154,57 @@ app.post("/categories", (req, res) =>{
 });
 
 
+app.post("/deposit", (req, res) => {
+    const deposits = req.body;
+    console.log("Received a new deposit", req.body);
+
+    if(!Array.isArray(deposits) || deposits.length <= 0){
+        return res.status(400).json({message: "(Deposit) Invalid Data"});
+    }
+
+
+    for(const d of deposits){
+        const {id, date, description, bankAccount, categoryAmounts} = d;
+
+        if(!date || !description || !bankAccount || !categoryAmounts){
+            return res.status(400).json({message: "(Deposit) Missing a required field."});
+        }
+    }
+
+    console.log("Received deposits", deposits);
+
+    res.status(201).json({
+        message: "Deposit entered successfully!",
+        deposits
+
+    });
+});
+
+app.post("/debit", (req, res) =>{
+    const debits = req.body;
+    console.log("Received new debt transatction(s)", req.body);
+
+    if(!Array.isArray(debits) || debits.length <= 0){
+        return res.status(400).json({message: "(Debit) Invalid data"});
+    }
+
+    for(const d of debits){
+        const{id, date, description, category, amount, paymentMethod } = d;
+
+        if(!date || !description || !category || !amount || !paymentMethod){
+            return res.status(400).json({message: "(Debit) Missing a required field."});
+        }
+    }
+
+    console.log("Received Debit Transactions", debits);
+
+    res.status(201).json({
+        message: "Debit transaction(s) entered successfully",
+        debits
+    });
+});
+
+
 app.post("/accountOrDebt", (req, res) =>{
     
     const {accountName, startingAmount, accountType } = req.body;
@@ -177,31 +228,25 @@ app.post("/accountOrDebt", (req, res) =>{
     });
 });
 
-app.post("/deposit", (req, res) => {
-    const deposits = req.body;
-    console.log("Received a new deposit", req.body);
 
-    if(!Array.isArray(deposits) || deposits.length <= 0){
-        return res.status(400).json({message: "Missing Data"});
+app.post("/filterTransactions", (req, res) => {
+    const {amount, fromDate, toDate, category, paymentMethod} = req.body;
+    console.log("Filtering transactions... ", req.body);
+
+    const filterFormEntry = {
+        amount,
+        fromDate,
+        toDate,
+        category,
+        paymentMethod
     }
-
-
-    for(const d of deposits){
-        const {id, date, description, bankAccount, categoryAmounts} = d;
-
-        if(!date || !description || !bankAccount || !categoryAmounts){
-            return res.status(400).json({message: "Invalid data"});
-        }
-    }
-
-    console.log("Received deposits", deposits);
 
     res.status(201).json({
-        message: "Deposit entered successfully!",
-        deposits
+        message: "Transactions table filter successfully submitted",
+        filter: filterFormEntry,
+    });
 
-    })
-})
+});
 
 //#endregion
 

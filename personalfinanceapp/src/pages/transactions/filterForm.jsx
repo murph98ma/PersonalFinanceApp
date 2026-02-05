@@ -20,8 +20,37 @@ const FilterForm = ({categories, paymentMethods, onAddTransactionClick}) => {
         }));
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const payload = {
+            amount: formData.amount,
+            fromDate: formData.fromDate,
+            toDate: formData.toDate,
+            category: formData.category,
+            paymentMethod: formData.paymentMethod
+        }
+
+        try{
+            const repsonse = await fetch("http://localhost:5000/filterTransactions",{
+                method: "POST",
+                headers: {
+                    "Content-Type" : "application/json",
+                },
+                body: JSON.stringify(payload),
+            });
+
+            if(!repsonse.ok){
+                throw new Error("Failed to submit filter");
+            }
+
+            const data = await repsonse.json();
+            console.log("Filter submitted");
+
+        }catch(error){
+            console.log("Error submitting fitler data", error);
+        }
+      
         console.log("Filter form submitted");
         console.log(formData);
     }
