@@ -4,6 +4,7 @@ import cors from "cors";
 const app = express();
 const port = 5000;
 app.use(cors());
+app.use(express.json());
 
 //#region dashboard page api calls
 app.get("/growthTable", (req, res) => {
@@ -78,7 +79,7 @@ app.get("/pendingChargesData", (req, res) => {
 })
 //#endregion
 
-//#region transactions page api calls
+//#region transactions page get api calls
 app.get("/allTransactionData", (req, res) =>{
     res.json({
         transactions: [
@@ -127,6 +128,126 @@ app.get("/allBankAccounts", (req, res) => {
         bankAccounts:["NCACU", "Ally"]
     })
 });
+//#endregion
+
+//#region transactions post API calls
+app.post("/categories", (req, res) =>{
+
+    const {categoryName, bankAccount} = req.body;
+
+    console.log("Received new Category: ", req.body);
+
+    if(!categoryName || !bankAccount){
+        return res.status(400).json({ message: "Missing Fields"});
+    }
+
+    const newCategory = {
+        title: categoryName,
+        bankAccount
+    }
+
+    res.status(201).json({
+        message: "Category created successfully",
+        category: newCategory,
+    });
+
+});
+
+
+app.post("/deposit", (req, res) => {
+    const deposits = req.body;
+    console.log("Received a new deposit", req.body);
+
+    if(!Array.isArray(deposits) || deposits.length <= 0){
+        return res.status(400).json({message: "(Deposit) Invalid Data"});
+    }
+
+
+    for(const d of deposits){
+        const {id, date, description, bankAccount, categoryAmounts} = d;
+
+        if(!date || !description || !bankAccount || !categoryAmounts){
+            return res.status(400).json({message: "(Deposit) Missing a required field."});
+        }
+    }
+
+    console.log("Received deposits", deposits);
+
+    res.status(201).json({
+        message: "Deposit entered successfully!",
+        deposits
+
+    });
+});
+
+app.post("/debit", (req, res) =>{
+    const debits = req.body;
+    console.log("Received new debt transatction(s)", req.body);
+
+    if(!Array.isArray(debits) || debits.length <= 0){
+        return res.status(400).json({message: "(Debit) Invalid data"});
+    }
+
+    for(const d of debits){
+        const{id, date, description, category, amount, paymentMethod } = d;
+
+        if(!date || !description || !category || !amount || !paymentMethod){
+            return res.status(400).json({message: "(Debit) Missing a required field."});
+        }
+    }
+
+    console.log("Received Debit Transactions", debits);
+
+    res.status(201).json({
+        message: "Debit transaction(s) entered successfully",
+        debits
+    });
+});
+
+
+app.post("/accountOrDebt", (req, res) =>{
+    
+    const {accountName, startingAmount, accountType } = req.body;
+    console.log("Received new Bank Account or Debt", req.body);
+
+    if(!accountName || !accountType || !startingAmount){
+        return res.status(400).json({message: "Missing Fields"});
+    }
+
+    const newAccountOrDebt = {
+        id: 4,
+        accountName,
+        startingAmount,
+        accountType,
+        createdAt: new Date().toISOString(),   
+    }
+
+    res.status(201).json({
+        message: "Bank account or Debt account created successfully",
+        account: newAccountOrDebt,
+    });
+});
+
+
+app.post("/filterTransactions", (req, res) => {
+    const {amount, fromDate, toDate, category, paymentMethod} = req.body;
+    console.log("Filtering transactions... ", req.body);
+
+    const filterFormEntry = {
+        amount,
+        fromDate,
+        toDate,
+        category,
+        paymentMethod
+    }
+
+    res.status(201).json({
+        message: "Transactions table filter successfully submitted",
+        filter: filterFormEntry,
+    });
+
+});
+
 //#endregion
 
 app.listen(port, () =>{

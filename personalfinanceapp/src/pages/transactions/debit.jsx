@@ -24,20 +24,40 @@ const AddDebit = ({categories, paymentMethods}) => {
         setDebitEntries(updated);
     }
 
-    const handleDebitFormSubmit = (e)=> {
+    const handleDebitFormSubmit = async (e) => {
         e.preventDefault();
-        const validDebitEntries = debitEntries.filter(
-            (debitEntry) => debitEntry.date && debitEntry.description && debitEntry.category && debitEntry.amount && debitEntry.paymentMethod && debitEntry.pending
-        );
-        console.log(debitEntries);
-        setDebitEntries([{
-            date: "", 
-            description: "", 
-            category: "", 
-            amount: "", 
-            paymentMethod: "", 
-            pending: false
-        }]);
+        
+        try{
+            const response = await fetch("http://localhost:5000/debit",{
+                method: "POST",
+                headers:{
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(debitEntries),
+            });
+
+            if(!response.ok){
+                throw new Error("Failed to submit debit transaction(s)");
+            }
+
+            const data = await response.json();
+            console.log("Debit transaction(s) saved", data);
+
+            setDebitEntries([{
+                 date: "", 
+                description: "", 
+                category: "", 
+                amount: "", 
+                paymentMethod: "", 
+                pending: false
+            }]);
+
+        }catch(error){
+            throw new Error("Error submtting debit transaction(s)");
+        }
+
+   
+      
     }
     return(
         <form onSubmit={handleDebitFormSubmit}>

@@ -80,7 +80,9 @@ const Transactions = () => {
                <AddCategoryForm bankAccounts={allBankAccountData}/>
           </div>
           <div className="add-account-debt-item">
-              
+              <h4>Add Functionailty: </h4>
+              <p>Removing pending flag from transactions</p>
+              <p>Add payment method?</p>
           </div>
         </div>
           {showAddTransactionDialog && (<AddTransaction onClose={() => setShowAddTransactionDialog(false)} 

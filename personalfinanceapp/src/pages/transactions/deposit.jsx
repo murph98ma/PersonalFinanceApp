@@ -40,21 +40,35 @@ const AddDeposit = ({categories, bankAccounts}) => {
         setDepositEntries(updated);
     }
 
-    const handleDepositFormSubmit=(e)=> {
+    const handleDepositFormSubmit= async (e) => {
         e.preventDefault();
-        const validDepositEntries = depositEntries.filter(
-            (depositEntry) => depositEntry.date && depositEntry.description && depositEntry.bankAccount && depositEntry.categoryAmounts
-            && Object.keys(depositEntry.categoryAmounts).length > 0
-        );
-        console.log(depositEntries)
-             setDepositEntries([{
-                 id: uuidv4(), 
-                 date: "", 
-                 description:"", 
-                 bankAccount: "", 
-                 categoryAmounts: {},
-             }
-            ]);
+
+        try{
+            const response = await fetch("http://localhost:5000/deposit",{
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(depositEntries),
+            });
+
+            if(!response.ok){
+                throw new Error("Failed to submit deposit");
+            }
+
+            const data = await response.json();
+            console.log("Deposit saved: ", data);
+
+            setDepositEntries([{
+                id: uuidv4(),
+                date: "",
+                description: "",
+                bankAccount: "",
+                categoryAmounts: {},
+            }]);
+        }catch(error){
+            console.log("Error submitting deposit(s)", error);
+        }
     }
 
     return(
